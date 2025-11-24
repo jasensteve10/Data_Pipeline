@@ -65,7 +65,9 @@ class TourPackage {
   +endDate : Date
   +bikeTypeIncluded : 
   +luggageTransport : Boolean
-
+  +stageIDList : String
+  +initialDestinationId : String
+  +finalDestinationId : String
 }
 
 class Stage {
@@ -100,6 +102,8 @@ class CyclingPath {
   +difficulty : Level
   +distanceKm : Decimal
   +elevationGainM : Decimal
+  +fromDestinationId : String
+  +toDestinationId : String
 }
 
 class RentalBike {
@@ -138,14 +142,13 @@ class MaintenanceLog {
 }
 
 ' ==== Associations & multiplicities ====
-Guide "1" -- "0..*" Stage  
-TourPackage "1" -- "1..*" Stage
-TourPackage "1" -- "1..*" Destination
-TourPackage "1" -- "1..*" CyclingPath
+Guide "1" -- "0..*" Stage  : manages
 TripGroup "1" -- "1" TourPackage
-Client "1" -- "0..*" Booking
-Booking "1" -- "1" TourPackage
-Booking "0..1" -- "0..1" RentalBike
+
+Client "1" -- "0..*" Booking :Booking
+Booking "1" -- "1" TourPackage :Booking
+
+Booking "0..1" -- "0..1" RentalBike :Booking
 
 
 ' CyclingPath start/end
@@ -154,11 +157,17 @@ CyclingPath "1" --> "1" Destination : to
 
 
 ' TourPackage composition of Stages
-TourPackage "1" *-- "1..*" Stage
+TourPackage "1" *-- "1..*" Stage : includes
+
+' Stage composition of destinations and cycling paths
+Stage "1" o-- "0..*" Destination : includes
+
+' Destination composition of cycling paths
+Destination "1" o-- "0..*" CyclingPath : includes
 
 ' TourPackage <-> Destination (main destinations)
-TourPackage "0..*" -- "0..*" Destination
+TourPackage "0..*" -- "0..*" Destination : mainDestinations
 
 ' RentalBike maintenance logs
-RentalBike "1" -- "0..*" MaintenanceLog
+RentalBike "1" -- "0..*" MaintenanceLog : hasLog
 @enduml
