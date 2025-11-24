@@ -55,7 +55,6 @@ class Guide {
 }
 
 class TourPackage {
-    ' The Catalog Template (e.g., The standard 7-day Loire Tour)
     +tourId : ID
     +title : String
     +description : String
@@ -67,7 +66,6 @@ class TourPackage {
 }
 
 class TripGroup {
-    ' The Specific Instance (e.g., The Loire Tour departing June 15th)
     +tripGroupId : ID
     +tourId : IDREF
     +leadGuideId : IDREF
@@ -76,7 +74,6 @@ class TripGroup {
 }
 
 class Stage {
-    ' One day of the tour
     +stageId : ID
     +tourId : IDREF
     +dayNumber : Integer
@@ -96,7 +93,6 @@ class Destination {
 }
 
 class Activity {
-    ' New Class to avoid String lists
     +activityId : ID
     +name : String
     +type : String
@@ -157,7 +153,7 @@ TripGroup "0..1" --> "1" Guide : led by
 Client "1" -- "0..*" Booking : makes
 Booking "1" --> "1" TourPackage : reserves
 Booking "0..1" --> "0..1" RentalBikeListing : reserves
-
+Client "1" -- "0..*" TripGroup : member 
 ' 4. Stage details
 Stage "1" o-- "0..*" Activity : offers
 Stage "1" -- "1..*" CyclingPath : utilizes
@@ -169,9 +165,6 @@ CyclingPath "1" --> "1" Destination : to
 
 ' 6. Fleet Management
 Bike "1" *-- "0..*" MaintenanceLog : history
-
-Client "1" -- "0..*" TripGroup : member 
-
 RentalBikeListing "1" *-- "1..*" Bike : composed of
 
 @enduml
