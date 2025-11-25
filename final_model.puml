@@ -120,7 +120,7 @@ class Bike {
 
 class RentalBikeListing {
     +listingId : ID
-    +bikeId : IDREF
+    +bikeId : IDREFS
 }
 
 class MaintenanceLog {
@@ -154,6 +154,7 @@ Client "1" -- "0..*" Booking : makes
 Booking "1" --> "1" TourPackage : reserves
 Booking "0..1" --> "0..1" RentalBikeListing : reserves
 Client "1" -- "0..*" TripGroup : member 
+
 ' 4. Stage details
 Stage "1" o-- "0..*" Activity : offers
 Stage "1" -- "1..*" CyclingPath : utilizes
