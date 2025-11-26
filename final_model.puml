@@ -1,0 +1,171 @@
+@startuml
+
+' ==== Enums ====
+enum BikeType {
+    TREKKING
+    ELECTRIC
+}
+
+enum ExperienceLevel {
+    BEGINNER
+    OCCASIONAL
+    REGULAR
+    EXPERT
+}
+
+enum DifficultyLevel {
+    EASY
+    MODERATE
+    CHALLENGING
+    EXTREME
+}
+
+enum DestinationType {
+    CITY
+    HISTORICAL
+    COASTAL
+    MOUNTAINOUS
+}
+
+enum BookingStatus {
+    PENDING
+    CONFIRMED
+    CANCELLED
+    COMPLETED
+}
+
+' ==== Main classes ====
+
+class Client {
+    +clientId : ID
+    +firstName : String
+    +lastName : String
+    +email : String
+    +phone : String
+    +countryOfResidence : String
+    +experienceLevel : ExperienceLevel
+}
+
+class Guide {
+    +guideId : ID
+    +name : String
+    +certification : String
+    +phone : String
+    +email : String
+}
+
+class TourPackage {
+    +tourId : ID
+    +title : String
+    +description : String
+    +totalDurationDays : Integer
+    +difficulty : DifficultyLevel
+    +currency : String
+    +luggageTransport : Boolean
+    +stageIds : IDREFS
+}
+
+class TripGroup {
+    +tripGroupId : ID
+    +tourId : IDREF
+    +leadGuideId : IDREF
+    +maxParticipants : Integer
+    +currentParticipants : IDREFS
+}
+
+    class Stage {
+        +stageId : ID
+        +tourId : IDREF
+        +dayNumber : Integer
+        +title : String
+        +description : String
+        +distanceKm : Decimal
+    }
+
+    class Destination {
+        +destinationId : ID
+        +name : String
+        +country : String
+        +region : String
+        +type : DestinationType
+        +latitude : Decimal
+        +longitude : Decimal
+    }
+
+    class Activity {
+        +activityId : ID
+        +name : String
+        +type : String
+        +durationHours : Decimal
+        +cost : Decimal
+    }
+
+    class CyclingPath {
+        +pathId : ID
+        +name : String
+        +difficulty : DifficultyLevel
+        +distanceKm : Decimal
+        +elevationGainM : Decimal
+        +surfaceType : String
+    }
+
+class Bike {
+    +bikeId : ID
+    +model : String
+    +frameSize : String
+    +type : BikeType
+    +availability : Boolean
+    +rentalPricePerDay : Decimal
+}
+
+class RentalBikeListing {
+    +listingId : ID
+    +bikeId : IDREFS
+}
+
+class MaintenanceLog {
+    +logId : ID
+    +bikeId : IDREF
+    +date : Date
+    +cost : Decimal
+    +description : String
+}
+
+class Booking {
+    +bookingId : ID
+    +clientId : IDREF
+    +tripGroupId : IDREF
+    +rentalBikeListingId : IDREF
+    +bookingDate : Date
+    +status : BookingStatus
+    +totalPrice : Decimal
+}
+
+' ==== Associations ====
+
+' 1. A Tour Package is composed of sequential Stages
+TourPackage "1" *-- "1..*" Stage : composed of
+
+' 2. A TripGroup is an INSTANCE of a TourPackage
+TripGroup "0..1" --> "1" Guide : led by
+
+' 3. Clients book a spot in a TripGroup
+Client "1" -- "0..*" Booking : makes
+Booking "1" --> "1" TourPackage : reserves
+Booking "0..1" --> "0..1" RentalBikeListing : reserves
+Client "1" -- "0..*" TripGroup : member 
+
+' 4. Stage details
+Stage "1" o-- "0..*" Activity : offers
+Stage "1" -- "1..*" CyclingPath : utilizes
+Stage "1" -- "2" Destination : starts/ends at
+
+' 5. Geographic Logic
+CyclingPath "1" --> "1" Destination : from
+CyclingPath "1" --> "1" Destination : to
+
+' 6. Fleet Management
+Bike "1" *-- "0..*" MaintenanceLog : history
+RentalBikeListing "1" *-- "1..*" Bike : composed of
+
+@enduml

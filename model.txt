@@ -1,0 +1,82 @@
+classDiagram
+    %% Core Actors
+    class Client {
+        +ID clientID
+        +String name
+        +String email
+        +String phone
+        +Address billingAddr
+    }
+
+    class Guide {
+        +ID guideID
+        +String name
+        +String[] languages
+        +String certificationLevel
+    }
+
+    %% The Product
+    class TourPackage {
+        +ID tourID
+        +String name
+        +Int difficultyLevel
+        +Float basePrice
+        +String description
+    }
+
+    class RouteSegment {
+        +ID segmentID
+        +Float distanceKM
+        +Float elevationGain
+        +String gpxData
+    }
+
+    class Destination {
+        +ID destID
+        +String name
+        +String type (Hotel/Landmark)
+        +Geo coord
+    }
+
+    class ActivityEvent {
+        +ID activityID
+        +String type (WineTasting/Museum)
+        +Float durationHours
+    }
+
+    %% Operations & Assets
+    class Booking {
+        +ID bookingID
+        +Date startDate
+        +Date endDate
+        +Enum status (Confirmed/Pending)
+        +Float totalPrice
+    }
+
+    class Bike {
+        +ID bikeID
+        +String model
+        +Enum type (Road/MTB/E-Bike)
+        +String frameSize
+        +Enum status (Available/Maintenance)
+    }
+
+    class MaintenanceLog {
+        +ID logID
+        +Date date
+        +String description
+        +Float cost
+    }
+
+    %% Relationships
+    Client "1" -- "0..*" Booking : initiates >
+    Booking "1" -- "1" TourPackage : is for >
+    Booking "1" -- "0..1" Guide : requested >
+    Booking "1" -- "1..*" Bike : reserves >
+    
+    TourPackage "1" *-- "1..*" RouteSegment : composed of >
+    TourPackage "1" o-- "0..*" ActivityEvent : includes >
+    
+    RouteSegment "1" -- "2" Destination : connects (Start/End) >
+    
+    Bike "1" -- "0..*" MaintenanceLog : has history >
