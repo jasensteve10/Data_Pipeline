@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    
+    <!-- =========================
+         ENUMERATIONS
+         ========================== -->
+    
+    <xs:simpleType name="BikeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TREKKING"/>
+            <xs:enumeration value="ELECTRIC"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="ExperienceLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BEGINNER"/>
+            <xs:enumeration value="OCCASIONAL"/>
+            <xs:enumeration value="REGULAR"/>
+            <xs:enumeration value="EXPERT"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="DifficultyLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EASY"/>
+            <xs:enumeration value="MODERATE"/>
+            <xs:enumeration value="CHALLENGING"/>
+            <xs:enumeration value="EXTREME"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="DestinationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CITY"/>
+            <xs:enumeration value="HISTORICAL"/>
+            <xs:enumeration value="COASTAL"/>
+            <xs:enumeration value="MOUNTAINOUS"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="BookingStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PENDING"/>
+            <xs:enumeration value="CONFIRMED"/>
+            <xs:enumeration value="CANCELLED"/>
+            <xs:enumeration value="COMPLETED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- =========================
+         ROOT ELEMENT
+         ========================== -->
+    
+    <xs:element name="CyclingTourDatabase">
+        <xs:complexType>
+            <xs:sequence>
+                
+                <xs:element name="Clients" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Client" type="ClientType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="Guides" >
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Guide" type="GuideType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="TourPackages" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="TourPackage" type="TourPackageType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="TripGroups" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="TripGroup" type="TripGroupType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="Stages" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Stage" type="StageType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="Destinations" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Destination" type="DestinationTypeComplex" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="Activities" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Activity" type="ActivityType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="CyclingPaths" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="CyclingPath" type="CyclingPathType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="Bikes" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Bike" type="BikeTypeComplex" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="RentalBikeListings" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="RentalBikeListing" type="RentalBikeListingType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="MaintenanceLogs" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="MaintenanceLog" type="MaintenanceLogType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="Bookings" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Booking" type="BookingType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- =========================
+         COMPLEX TYPES (CLASSES)
+         ========================== -->
+    
+    <!-- Client -->
+    <xs:complexType name="ClientType">
+        <xs:sequence>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="phone" type="xs:string"/>
+            <xs:element name="countryOfResidence" type="xs:string"/>
+            <xs:element name="experienceLevel" type="ExperienceLevel"/>
+        </xs:sequence>
+        <xs:attribute name="clientId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- Guide -->
+    <xs:complexType name="GuideType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="certification" type="xs:string" minOccurs="0"/>
+            <xs:element name="phone" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="guideId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- TourPackage -->
+    <xs:complexType name="TourPackageType">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+            <xs:element name="totalDurationDays" type="xs:int"/>
+            <xs:element name="difficulty" type="DifficultyLevel"/>
+            <xs:element name="currency" type="xs:string"/>
+            <xs:element name="luggageTransport" type="xs:boolean"/>
+            <!-- references Stages via their IDs -->
+            <xs:element name="stageIds" type="xs:IDREFS" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="tourId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- TripGroup -->
+    <xs:complexType name="TripGroupType">
+        <xs:sequence>
+            <!-- reference to TourPackage -->
+            <xs:element name="tourId" type="xs:IDREF"/>
+            <!-- reference to Guide -->
+            <xs:element name="leadGuideId" type="xs:IDREF"/>
+            <xs:element name="maxParticipants" type="xs:int"/>
+            <!-- references Clients via their clientId -->
+            <xs:element name="currentParticipants" type="xs:IDREFS" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="tripGroupId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- Stage -->
+    <xs:complexType name="StageType">
+        <xs:sequence>
+            <!-- reference to TourPackage -->
+            <xs:element name="tourId" type="xs:IDREF"/>
+            <xs:element name="dayNumber" type="xs:int"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+            <xs:element name="distanceKm" type="xs:decimal"/>
+            <!-- Activities offered on this Stage -->
+            <xs:element name="activityIds" type="xs:IDREFS" minOccurs="0"/>
+            <!-- Cycling paths used in this Stage -->
+            <xs:element name="cyclingPathIds" type="xs:IDREFS" minOccurs="0"/>
+            <!-- Exactly 2 destinations: start and end -->
+            <xs:element name="startDestinationId" type="xs:IDREF"/>
+            <xs:element name="endDestinationId" type="xs:IDREF"/>
+        </xs:sequence>
+        <xs:attribute name="stageId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- Destination -->
+    <xs:complexType name="DestinationTypeComplex">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="country" type="xs:string"/>
+            <xs:element name="region" type="xs:string" minOccurs="0"/>
+            <xs:element name="type" type="DestinationType"/>
+            <xs:element name="latitude" type="xs:decimal"/>
+            <xs:element name="longitude" type="xs:decimal"/>
+        </xs:sequence>
+        <xs:attribute name="destinationId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- Activity -->
+    <xs:complexType name="ActivityType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="durationHours" type="xs:decimal"/>
+            <xs:element name="cost" type="xs:decimal" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="activityId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- CyclingPath -->
+    <xs:complexType name="CyclingPathType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="difficulty" type="DifficultyLevel"/>
+            <xs:element name="distanceKm" type="xs:decimal"/>
+            <xs:element name="elevationGainM" type="xs:decimal"/>
+            <xs:element name="surfaceType" type="xs:string"/>
+            <!-- geographic logic: from / to destinations -->
+            <xs:element name="fromDestinationId" type="xs:IDREF"/>
+            <xs:element name="toDestinationId" type="xs:IDREF"/>
+        </xs:sequence>
+        <xs:attribute name="pathId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- Bike -->
+    <xs:complexType name="BikeTypeComplex">
+        <xs:sequence>
+            <xs:element name="model" type="xs:string"/>
+            <xs:element name="frameSize" type="xs:string"/>
+            <xs:element name="type" type="BikeType"/>
+            <xs:element name="availability" type="xs:boolean"/>
+            <xs:element name="rentalPricePerDay" type="xs:decimal"/>
+        </xs:sequence>
+        <xs:attribute name="bikeId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- RentalBikeListing -->
+    <xs:complexType name="RentalBikeListingType">
+        <xs:sequence>
+            <!-- composition of one or more Bikes -->
+            <xs:element name="bikeIds" type="xs:IDREFS"/>
+        </xs:sequence>
+        <xs:attribute name="listingId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- MaintenanceLog -->
+    <xs:complexType name="MaintenanceLogType">
+        <xs:sequence>
+            <!-- reference to Bike -->
+            <xs:element name="bikeId" type="xs:IDREF"/>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="cost" type="xs:decimal"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="logId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- Booking -->
+    <xs:complexType name="BookingType">
+        <xs:sequence>
+            <!-- reference to Client -->
+            <xs:element name="clientId" type="xs:IDREF"/>
+            <!-- reference to TripGroup -->
+            <xs:element name="tripGroupId" type="xs:IDREF"/>
+            <!-- optional reference to RentalBikeListing -->
+            <xs:element name="rentalBikeListingId" type="xs:IDREF" minOccurs="0"/>
+            <xs:element name="bookingDate" type="xs:date"/>
+            <xs:element name="status" type="BookingStatus"/>
+            <xs:element name="totalPrice" type="xs:decimal"/>
+        </xs:sequence>
+        <xs:attribute name="bookingId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+</xs:schema>

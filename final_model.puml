@@ -73,41 +73,41 @@ class TripGroup {
     +currentParticipants : IDREFS
 }
 
-class Stage {
-    +stageId : ID
-    +tourId : IDREF
-    +dayNumber : Integer
-    +title : String
-    +description : String
-    +distanceKm : Decimal
-}
+    class Stage {
+        +stageId : ID
+        +tourId : IDREF
+        +dayNumber : Integer
+        +title : String
+        +description : String
+        +distanceKm : Decimal
+    }
 
-class Destination {
-    +destinationId : ID
-    +name : String
-    +country : String
-    +region : String
-    +type : DestinationType
-    +latitude : Decimal
-    +longitude : Decimal
-}
+    class Destination {
+        +destinationId : ID
+        +name : String
+        +country : String
+        +region : String
+        +type : DestinationType
+        +latitude : Decimal
+        +longitude : Decimal
+    }
 
-class Activity {
-    +activityId : ID
-    +name : String
-    +type : String
-    +durationHours : Decimal
-    +cost : Decimal
-}
+    class Activity {
+        +activityId : ID
+        +name : String
+        +type : String
+        +durationHours : Decimal
+        +cost : Decimal
+    }
 
-class CyclingPath {
-    +pathId : ID
-    +name : String
-    +difficulty : DifficultyLevel
-    +distanceKm : Decimal
-    +elevationGainM : Decimal
-    +surfaceType : String
-}
+    class CyclingPath {
+        +pathId : ID
+        +name : String
+        +difficulty : DifficultyLevel
+        +distanceKm : Decimal
+        +elevationGainM : Decimal
+        +surfaceType : String
+    }
 
 class Bike {
     +bikeId : ID
