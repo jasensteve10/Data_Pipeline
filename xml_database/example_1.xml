@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<main:cyclingTourDatabase 
+    xmlns:main="http://www.TourCyclingOperator.com/main"
+    xmlns:c="http://www.TourCyclingOperator.com/common"
+    xmlns:tp="http://www.TourCyclingOperator.com/tour_packages"
+    xmlns:cg="http://www.TourCyclingOperator.com/clients_and_guides"
+    xmlns:b="http://www.TourCyclingOperator.com/bike_fleet_and_maintenance"
+    xmlns:bk="http://www.TourCyclingOperator.com/bookings"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.TourCyclingOperator.com/main ../xsd_files/main.xsd">
+    
+    <!-- === Clients & Guides === -->
+    <main:client clientId="cli_alice_wonder">
+        <cg:firstName>Alice</cg:firstName>
+        <cg:lastName>Wonder</cg:lastName>
+        <cg:email>alice@example.com</cg:email>
+        <cg:phone>+1-555-0100</cg:phone>
+        <cg:countryOfResidence>USA</cg:countryOfResidence>
+        <cg:experienceLevel>OCCASIONAL</cg:experienceLevel>
+    </main:client>
+    
+    <main:guide guideId="guide_jean_pierre">
+        <cg:name>Jean-Pierre</cg:name>
+        <cg:certification>National Guide Level 2</cg:certification>
+        <cg:phone>+33-6-0000-0000</cg:phone>
+        <cg:email>jp@cyclodyssees.fr</cg:email>
+    </main:guide>
+    
+    <main:tripGroup tripGroupId="grp_june_2024"
+                    tourId="tour_paris_royal"
+                    leadGuideId="guide_jean_pierre">
+        <cg:MaxParticipants>12</cg:MaxParticipants>
+        <cg:currentParticipants>cli_alice_wonder</cg:currentParticipants>
+    </main:tripGroup>
+    
+    <main:tourPackage tourId="tour_paris_royal">
+        <tp:title>Royal Paris Weekend</tp:title>
+        <tp:description>Discover the kings' valley by bike.</tp:description>
+        <tp:totalDurationDays>2</tp:totalDurationDays>
+        <tp:difficulty>EASY</tp:difficulty>
+        <tp:currency>EUR</tp:currency>
+        <tp:luggageTransport>true</tp:luggageTransport>
+        <tp:stageIds>stage_day_01</tp:stageIds>
+    </main:tourPackage>
+    
+    <main:stage stageId="stage_day_01" tourId="tour_paris_royal">
+        <tp:dayNumber>1</tp:dayNumber>
+        <tp:title>Escape from the Capital</tp:title>
+        <tp:description>A scenic ride from the Eiffel Tower to the Palace.</tp:description>
+        <tp:distanceKm>25.00</tp:distanceKm>
+        <tp:activityIds>act_wine_tasting</tp:activityIds>
+        <tp:cyclingPathIds>path_royal_route</tp:cyclingPathIds>
+        <tp:startDestinationId>dest_paris</tp:startDestinationId>
+        <tp:endDestinationId>dest_versailles</tp:endDestinationId>
+    </main:stage>
+    
+    <main:activity activityId="act_wine_tasting">
+        <tp:name>Grand Cru Tasting</tp:name>
+        <tp:type>Gastronomy</tp:type>
+        <tp:durationHours>2.00</tp:durationHours>
+        <tp:cost>50.00</tp:cost>
+    </main:activity>
+    
+    <main:cyclingPath pathId="path_royal_route"
+                      fromDestinationId="dest_paris"
+                      toDestinationId="dest_versailles">
+        <tp:name>The Royal Route</tp:name>
+        <tp:difficulty>EASY</tp:difficulty>
+        <tp:distanceKm>22.50</tp:distanceKm>
+        <tp:elevationGainM>150.0</tp:elevationGainM>
+        <tp:surfaceType>Paved</tp:surfaceType>
+    </main:cyclingPath>
+    
+    <main:destination destinationId="dest_paris">
+        <tp:name>Paris</tp:name>
+        <tp:country>France</tp:country>
+        <tp:region>Île-de-France</tp:region>
+        <tp:type>CITY</tp:type>
+        <tp:latitude>48.856600</tp:latitude>
+        <tp:longitude>2.352200</tp:longitude>
+    </main:destination>
+    
+    <main:destination destinationId="dest_versailles">
+        <tp:name>Versailles</tp:name>
+        <tp:country>France</tp:country>
+        <tp:type>HISTORICAL</tp:type>
+        <tp:latitude>48.804900</tp:latitude>
+        <tp:longitude>2.120400</tp:longitude>
+    </main:destination>
+    
+    <main:bike bikeId="bike_trek_001">
+        <b:model>Trek FX 3</b:model>
+        <b:frameSize>M</b:frameSize>
+        <b:type>TREKKING</b:type>
+        <b:availability>true</b:availability>
+        <b:rentalPricePerDay>25.00</b:rentalPricePerDay>
+    </main:bike>
+    
+    <main:rentalBikeListing listingId="list_alice_rental">
+        <b:bikeIds>bike_trek_001</b:bikeIds>
+    </main:rentalBikeListing>
+    
+    <main:maintenanceLog logId="log_fix_tire_001" bikeId="bike_trek_001">
+        <b:date>2023-11-15</b:date>
+        <b:cost>15.00</b:cost>
+        <b:description>Replaced rear tube and tire.</b:description>
+    </main:maintenanceLog>
+    
+    <main:booking bookingId="bk_2024_001"
+                  clientId="cli_alice_wonder"
+                  tripGroupId="grp_june_2024"
+                  rentalBikeListingId="list_alice_rental"
+                  tourId="tour_paris_royal">
+        <bk:bookingDate>2024-01-20</bk:bookingDate>
+        <bk:status>CONFIRMED</bk:status>
+        <bk:totalPrice>350.00</bk:totalPrice>
+    </main:booking>
+
+</main:cyclingTourDatabase>

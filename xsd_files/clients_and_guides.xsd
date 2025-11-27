@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.TourCyclingOperator.com/clients_and_guides"
+    xmlns="http://www.TourCyclingOperator.com/clients_and_guides"
+    xmlns:c="http://www.TourCyclingOperator.com/common"
+    xmlns:tp="http://www.TourCyclingOperator.com/tour_packages"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    
+    <!-- Import common simple types and enums -->
+    <xs:import 
+        namespace="http://www.TourCyclingOperator.com/common"
+        schemaLocation="common.xsd"/>
+    
+    <xs:import 
+        namespace="http://www.TourCyclingOperator.com/tour_packages"
+        schemaLocation="tour_packages.xsd"/>
+    
+    <!--
+         clientType definition
+    -->
+    
+    <!-- Global element for a client -->
+    <xs:element name="client" type="ClientType"/>
+    <xs:complexType name="ClientType">
+        <xs:sequence>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="email" type="c:EmailType"/>
+            <xs:element name="phone" type="xs:string" minOccurs="0"/>
+            <xs:element name="countryOfResidence" type="xs:string"/>
+            <xs:element name="experienceLevel" type="c:ExperienceLevel"/>
+        </xs:sequence>
+        <!-- ID of the client -->
+        <xs:attribute name="clientId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!--
+         guideType definition
+    -->
+    <!-- Global element for a guide -->
+    <xs:element name="guide" type="GuideType"/>
+    <xs:complexType name="GuideType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="certification" type="xs:string" minOccurs="0"/>
+            <xs:element name="phone" type="xs:string" minOccurs="0"/>
+            <xs:element name="email" type="c:EmailType"/>
+        </xs:sequence>
+        <!-- ID of the guide -->
+        <xs:attribute name="guideId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!--
+         tripGroupType definition
+    -->
+    
+    <!-- Global element for a trip group -->
+    <xs:element name="tripGroup" type="TripGroupType"/>
+    
+    <xs:complexType name="TripGroupType">
+        <xs:sequence>
+            <!-- Max participants must be at least 1 -->
+            <xs:element name="MaxParticipants">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            
+            <!-- List of current participants (Client IDs as IDREFS) -->
+            <xs:element name="currentParticipants" minOccurs="0">
+                <xs:simpleType>
+                    <!-- whitespace-separated list of xs:IDREF -->
+                    <xs:restriction base="xs:IDREFS"/>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        
+        <!-- ID of the trip group -->
+        <xs:attribute name="tripGroupId" type="xs:ID" use="required"/>
+        
+        <!-- Reference to the TourPackage  -->
+        <xs:attribute name="tourId" type="xs:IDREF" use="required"/>
+        
+        <!-- Reference to the lead Guide -->
+        <xs:attribute name="leadGuideId" type="xs:IDREF" use="required"/>
+    </xs:complexType>
+
+</xs:schema>
