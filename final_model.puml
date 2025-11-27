@@ -69,7 +69,7 @@ class TripGroup {
     +tripGroupId : ID
     +tourId : IDREF
     +leadGuideId : IDREF
-    +maxParticipants : Integer
+    +Participants : Integer
     +currentParticipants : IDREFS
 }
 
