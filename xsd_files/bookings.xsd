@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.TourCyclingOperator.com/bookings"
+    xmlns="http://www.TourCyclingOperator.com/bookings"
+    xmlns:c="http://www.TourCyclingOperator.com/common"
+    xmlns:cl="http://www.TourCyclingOperator.com/clients_and_guides"
+    xmlns:b="http://www.TourCyclingOperator.com/bikes"
+    xmlns:t="http://www.TourCyclingOperator.com/tour_packages"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    
+    
+    <!-- Import common simple types and enums -->
+    <xs:import 
+        namespace="http://www.TourCyclingOperator.com/common"
+        schemaLocation="common.xsd"/>
+    <xs:import 
+        namespace="http://www.TourCyclingOperator.com/tour_packages"
+        schemaLocation="tour_packages.xsd"/>
+    <xs:import
+        namespace="http://www.TourCyclingOperator.com/clients_and_guides"
+        schemaLocation="clients_and_guides.xsd"/>
+    <xs:import
+        namespace="http://www.TourCyclingOperator.com/bike_fleet_and_maintenance"
+        schemaLocation="bike_fleet_and_maintenance.xsd"/>
+    
+    
+    <!--
+         bookingType definition
+    -->
+    <!-- Global element for a booking -->
+    <xs:element name="booking" type="BookingType"/>
+    
+    <xs:complexType name="BookingType">
+        <xs:sequence>
+            <!-- booking date -->
+            <xs:element name="bookingDate" type="xs:date"/>
+            
+            <!-- status from common.xsd -->
+            <xs:element name="status" type="c:BookingStatus"/>
+            
+            <!-- total price -->
+            <xs:element name="totalPrice" type="c:PriceType"/>
+        </xs:sequence>
+        
+        <!-- Unique ID -->
+        <xs:attribute name="bookingId" type="xs:ID" use="required"/>
+        
+        <!-- Link to client (defined in clients_and_guides.xsd) -->
+        <xs:attribute name="clientId" type="xs:IDREF" use="required"/>
+        
+        <!-- Link to trip group -->
+        <xs:attribute name="tripGroupId" type="xs:IDREF" use="required"/>
+        
+        <!-- Link to rental bike listing  -->
+        <xs:attribute name="rentalBikeListingId" type="xs:IDREF" use="optional"/>
+        
+        <!-- Link to tour package -->
+        <xs:attribute name="tourId" type="xs:IDREF" use="required"/>
+    </xs:complexType>
+    
+</xs:schema>

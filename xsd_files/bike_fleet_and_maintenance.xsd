@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.TourCyclingOperator.com/bike_fleet_and_maintenance"
+    xmlns="http://www.TourCyclingOperator.com/bike_fleet_and_maintenance"
+    xmlns:c="http://www.TourCyclingOperator.com/common"
+    elementFormDefault="qualified"> 
+    
+    <!-- Import common simple types and enums -->
+    <xs:import
+        namespace="http://www.TourCyclingOperator.com/common"
+        schemaLocation="common.xsd"/>
+    
+    <!-- 
+         Bike type definition
+    -->
+    <!-- Global element for a bike -->
+    <xs:element name="bike" type="BikeType"/>
+    
+    <xs:complexType name="BikeType">
+        <xs:sequence>
+            <xs:element name="model" type="xs:string"/>
+            <xs:element name="frameSize" type="xs:string"/>
+            <xs:element name="type" type="c:BikeType"/>
+            <xs:element name="availability" type="xs:boolean"/>
+            <xs:element name="rentalPricePerDay" type="c:PriceType"/>
+        </xs:sequence>
+        
+        <!-- Unique ID for the bike -->
+        <xs:attribute name="bikeId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!-- 
+        bikinglistType definition
+    -->
+    <!-- Global element for a rental bike listing -->
+    <xs:element name="rentalBikeListing" type="RentalBikeListingType"/>
+    <xs:complexType name="RentalBikeListingType">
+        <xs:sequence>
+            <!-- List of bikes included in this listing (composition) -->
+            <xs:element name="bikeIds">
+                <xs:simpleType>
+                    <!-- whitespace-separated list of Bike IDs -->
+                    <xs:restriction base="xs:IDREFS"/>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        
+        <!-- Unique ID for the listing -->
+        <xs:attribute name="listingId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!--
+         maintenanceRecordType definition
+    -->
+    
+    <!-- Global element for a maintenance log -->
+    <xs:element name="maintenanceLog" type="MaintenanceLogType"/>
+
+    <xs:complexType name="MaintenanceLogType">
+        <xs:sequence>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="cost" type="c:PriceType" minOccurs="0"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        
+        <!-- Unique ID for the log entry -->
+        <xs:attribute name="logId" type="xs:ID" use="required"/>
+        
+        <!-- Reference to the maintained bike -->
+        <xs:attribute name="bikeId" type="xs:IDREF" use="required"/>
+    </xs:complexType>
+    
+</xs:schema>

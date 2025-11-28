@@ -80,6 +80,10 @@ class TripGroup {
         +title : String
         +description : String
         +distanceKm : Decimal
+        +activitiesIds : IDREFS
+        +cyclingPathIds : IDREFS
+        +startDestinationId : IDREF
+        +endDestinationId : IDREF
     }
 
     class Destination {
@@ -107,6 +111,8 @@ class TripGroup {
         +distanceKm : Decimal
         +elevationGainM : Decimal
         +surfaceType : String
+        +fromDestinationId : IDREF
+        +toDestinationId : IDREF
     }
 
 class Bike {
@@ -139,6 +145,7 @@ class Booking {
     +bookingDate : Date
     +status : BookingStatus
     +totalPrice : Decimal
+    +tourId : IDREF
 }
 
 ' ==== Associations ====

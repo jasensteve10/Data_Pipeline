@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.TourCyclingOperator.com/common"
+           xmlns="http://www.TourCyclingOperator.com/common"
+           elementFormDefault="qualified"> 
+    <!--
+         Enumerations for common simple types 
+    -->
+    
+    <!-- Experience level of a client -->
+    <xs:simpleType name="ExperienceLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BEGINNER"/>
+            <xs:enumeration value="OCCASIONAL"/>
+            <xs:enumeration value="REGULAR"/>
+            <xs:enumeration value="EXPERT"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Difficulty of a cycling path or tour -->
+    <xs:simpleType name="DifficultyLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EASY"/>
+            <xs:enumeration value="MODERATE"/>
+            <xs:enumeration value="CHALLENGING"/>
+            <xs:enumeration value="EXTREME"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Type of bike -->
+    <xs:simpleType name="BikeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TREKKING"/>
+            <xs:enumeration value="ELECTRIC"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Booking status -->
+    <xs:simpleType name="BookingStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PENDING"/>
+            <xs:enumeration value="CONFIRMED"/>
+            <xs:enumeration value="CANCELLED"/>
+            <xs:enumeration value="COMPLETED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Destination type -->
+    <xs:simpleType name="DestinationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CITY"/>
+            <xs:enumeration value="HISTORICAL"/>
+            <xs:enumeration value="COASTAL"/>
+            <xs:enumeration value="MOUNTAINOUS"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!--
+         ssimple types used across multiple modules
+    -->
+    
+    <!-- Email: simple RFC-like validation -->
+    <xs:simpleType name="EmailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@\s]+@[^@\s]+\.[^@\s]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Price: non-negative decimal with 2 digits max -->
+    <xs:simpleType name="PriceType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.00"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Latitude (-90 to +90) -->
+    <xs:simpleType name="LatitudeType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-90"/>
+            <xs:maxInclusive value="90"/>
+            <xs:fractionDigits value="6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Longitude (-180 to +180) -->
+    <xs:simpleType name="LongitudeType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-180"/>
+            <xs:maxInclusive value="180"/>
+            <xs:fractionDigits value="6"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

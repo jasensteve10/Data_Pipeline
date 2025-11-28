@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.TourCyclingOperator.com/main"
+    xmlns="http://www.TourCyclingOperator.com/main"
+    xmlns:c="http://www.TourCyclingOperator.com/common"
+    xmlns:tp="http://www.TourCyclingOperator.com/tour_packages"
+    xmlns:cg="http://www.TourCyclingOperator.com/clients_and_guides"
+    xmlns:b="http://www.TourCyclingOperator.com/bike_fleet_and_maintenance"
+    xmlns:bk="http://www.TourCyclingOperator.com/bookings"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    
+    <!-- Import common simple types and enums -->
+    <xs:import 
+        namespace="http://www.TourCyclingOperator.com/common" 
+        schemaLocation="common.xsd"/>
+    
+    <xs:import 
+        namespace="http://www.TourCyclingOperator.com/tour_packages" 
+        schemaLocation="tour_packages.xsd"/>
+    
+    <xs:import 
+        namespace="http://www.TourCyclingOperator.com/clients_and_guides" 
+        schemaLocation="clients_and_guides.xsd"/>
+    
+    <xs:import 
+        namespace="http://www.TourCyclingOperator.com/bike_fleet_and_maintenance"
+        schemaLocation="bike_fleet_and_maintenance.xsd"/>
+    <xs:import
+        namespace="http://www.TourCyclingOperator.com/bookings"
+        schemaLocation="bookings.xsd"/>
+    
+    
+    <!-- 
+    root tag 
+    -->
+    
+    <xs:element name="cyclingTourDatabase">
+        <xs:complexType>
+            <xs:sequence>
+                
+                <!-- === Clients & Guides === -->
+                <xs:element name="client" type="cg:ClientType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="guide" type="cg:GuideType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="tripGroup" type="cg:TripGroupType" minOccurs="0" maxOccurs="unbounded"/>
+                
+                <!-- === Tour Packages & Components === -->
+                <xs:element name="tourPackage" type="tp:TourPackageType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="stage" type="tp:StageType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="activity" type="tp:ActivityType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="cyclingPath" type="tp:CyclingPathType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="destination" type="tp:DestinationType" minOccurs="0" maxOccurs="unbounded"/>
+                
+                <!-- === Bikes & Maintenance === -->
+                <xs:element name="bike" type="b:BikeType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="rentalBikeListing" type="b:RentalBikeListingType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="maintenanceLog" type="b:MaintenanceLogType" minOccurs="0" maxOccurs="unbounded"/>
+                
+                <!-- === Bookings === -->
+                <xs:element name="booking" type="bk:BookingType" minOccurs="0" maxOccurs="unbounded"/>
+                
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

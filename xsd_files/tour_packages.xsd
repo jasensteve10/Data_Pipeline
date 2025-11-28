@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.TourCyclingOperator.com/tour_packages"
+    xmlns="http://www.TourCyclingOperator.com/tour_packages"
+    xmlns:c="http://www.TourCyclingOperator.com/common"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    
+    
+    <!-- Import common simple types and enums -->
+    <xs:import 
+        namespace="http://www.TourCyclingOperator.com/common" 
+        schemaLocation="common.xsd"/>
+    
+    <!--
+         tourPackageType definition
+    -->
+    
+    <!-- Global element for a tour package -->
+    <xs:element name="tourPackage" type="TourPackageType"/>
+    <xs:complexType name="TourPackageType">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+            <!-- total duration in days (>= 1) -->
+            <xs:element name="totalDurationDays">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="difficulty" type="c:DifficultyLevel"/>
+            <xs:element name="currency" type="xs:string"/>
+            <xs:element name="luggageTransport" type="xs:boolean"/>
+            
+            <!-- References to stages composing this tour (list of Stage IDs) -->
+            <xs:element name="stageIds" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:IDREFS"/>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        
+        <!-- ID of the tour -->
+        <xs:attribute name="tourId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!--
+         stageType definition
+    -->
+    <!-- Global element for a stage -->
+    <xs:element name="stage" type="StageType"/>
+    <xs:complexType name="StageType">
+        <xs:sequence>
+            <!-- day number within the tour (>= 1) -->
+            <xs:element name="dayNumber">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            
+            <xs:element name="title" type="xs:string"/>
+
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+            
+            <!-- distance in kilometers -->
+            <xs:element name="distanceKm">
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minInclusive value="0"/>
+                        <xs:fractionDigits value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            
+            <!-- references to Activities offered on this stage -->
+            <xs:element name="activityIds" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:IDREFS"/>
+                </xs:simpleType>
+            </xs:element>
+            
+            <!-- references to CyclingPaths used in this stage -->
+            <xs:element name="cyclingPathIds" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:IDREFS"/>
+                </xs:simpleType>
+            </xs:element>
+            
+            <!-- start and end Destinations of this stage -->
+            <xs:element name="startDestinationId" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:IDREF"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="endDestinationId" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:IDREF"/>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        
+        <!-- ID of the stage -->
+        <xs:attribute name="stageId" type="xs:ID" use="required"/>
+        
+        <!-- Reference to the TourPackage this stage belongs to -->
+        <xs:attribute name="tourId" type="xs:IDREF" use="required"/>
+    </xs:complexType>
+    
+    <!-- 
+            activityType definition
+    -->
+    <!-- Global element for an activity -->
+    <xs:element name="activity" type="ActivityType"/>
+    <xs:complexType name="ActivityType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <!-- duration in hours -->
+            <xs:element name="durationHours">
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minInclusive value="0"/>
+                        <xs:fractionDigits value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <!-- cost using common PriceType -->
+            <xs:element name="cost" type="c:PriceType" minOccurs="0"/>
+        </xs:sequence>
+        
+        <!-- ID of the activity -->
+        <xs:attribute name="activityId" type="xs:ID" use="required"/>
+    </xs:complexType>
+    
+    <!--
+         cyclingPathType definition
+    -->
+    <!-- Global element for a cycling path -->
+    <xs:element name="cyclingPath" type="CyclingPathType"/>
+    <xs:complexType name="CyclingPathType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+
+            <xs:element name="difficulty" type="c:DifficultyLevel"/>
+            
+            <!-- distance in kilometers -->
+            <xs:element name="distanceKm">
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minInclusive value="0"/>
+                        <xs:fractionDigits value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            
+            <!-- elevation gain in meters -->
+            <xs:element name="elevationGainM">
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minInclusive value="0"/>
+                        <xs:fractionDigits value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            
+            <xs:element name="surfaceType" type="xs:string"/>
+        </xs:sequence>
+        
+        <!-- ID of the path -->
+        <xs:attribute name="pathId" type="xs:ID" use="required"/>
+        
+        <!-- from / to destinations (aligns with UML "from" / "to") -->
+        <xs:attribute name="fromDestinationId" type="xs:IDREF" use="required"/>
+        <xs:attribute name="toDestinationId" type="xs:IDREF" use="required"/>
+    </xs:complexType>
+    
+    <!-- 
+        DestinationType definition
+    -->
+    <!-- Global element for a destination -->
+    <xs:element name="destination" type="DestinationType"/>
+    <xs:complexType name="DestinationType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="country" type="xs:string"/>
+            <xs:element name="region" type="xs:string" minOccurs="0"/>
+            <xs:element name="type" type="c:DestinationType"/>
+            
+            <!-- GPS coordinates using common types -->
+            <xs:element name="latitude" type="c:LatitudeType"/>
+            <xs:element name="longitude" type="c:LongitudeType"/>
+        </xs:sequence>
+        
+        <!-- ID of the destination -->
+        <xs:attribute name="destinationId" type="xs:ID" use="required"/>
+    </xs:complexType>
+</xs:schema>
