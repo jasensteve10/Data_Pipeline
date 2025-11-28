@@ -6,9 +6,9 @@ log:
 step 1 :  data model of cycling tour operator
           the entities and relations   done
 
-step 2 :  the schema of this model -- modularizing with namespaces and defining the models 
+step 2 :  the schema of this model -- modularizing with namespaces and defining the models   done
 
-step 3 :  the xml of this database corresponding to the schema
+step 3 :  the xml of this database corresponding to the schema  done
 
 step 4 : 6 scenari  for xsl visualisation 
 
