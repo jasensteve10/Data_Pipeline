@@ -2,8 +2,7 @@
 <xsl:stylesheet
     version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:main="http://www.TourCyclingOperator.com/main"
-    xmlns:cg="http://www.TourCyclingOperator.com/clients_and_guides">
+    xmlns:main="http://www.TourCyclingOperator.com/main">
 
     <xsl:output method="html" encoding="UTF-8"/>
 
@@ -13,8 +12,8 @@
     -->
     <xsl:key
         name="exp"
-        match="cg:client"
-        use="normalize-space(cg:experienceLevel)"/>
+        match="Client"
+        use="normalize-space(experienceLevel)"/>
 
     <xsl:template match="/">
         <html>
@@ -29,30 +28,30 @@
                     on prend le premier client de chaque groupe.
                 -->
                 <xsl:for-each
-                    select="//cg:client
+                    select="//Client
                             [generate-id()
                              = generate-id(
                                    key('exp',
-                                       normalize-space(cg:experienceLevel)
+                                       normalize-space(experienceLevel)
                                    )[1]
                                )]">
 
                     <!-- Titre du groupe = niveau d'expérience -->
                     <h3>
-                        <xsl:value-of select="cg:experienceLevel"/>
+                        <xsl:value-of select="experienceLevel"/>
                     </h3>
 
                     <ul>
                         <!-- Tous les clients avec ce niveau -->
                         <xsl:for-each
                             select="key('exp',
-                                        normalize-space(cg:experienceLevel))">
+                                        normalize-space(experienceLevel))">
                             <li>
-                                <xsl:value-of select="cg:firstName"/>
+                                <xsl:value-of select="firstName"/>
                                 <xsl:text> </xsl:text>
-                                <xsl:value-of select="cg:lastName"/>
+                                <xsl:value-of select="lastName"/>
                                 <xsl:text> (</xsl:text>
-                                <xsl:value-of select="cg:email"/>
+                                <xsl:value-of select="email"/>
                                 <xsl:text>)</xsl:text>
                             </li>
                         </xsl:for-each>
