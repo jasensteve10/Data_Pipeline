@@ -1,6 +1,7 @@
 Testeur de XSLT : https://xslttest.appspot.com/
 
 Mes Scénarios :
+
 1- 
 Cette feuille XSLT affiche pour chaque étape (Stage) la liste des activités proposées.
 Pour chaque étape, elle affiche le titre puis les activités associées avec leur nom, type et durée.
