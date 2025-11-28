@@ -9,30 +9,165 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.TourCyclingOperator.com/main ../xsd_files/main.xsd">
     
-    <!-- === Clients & Guides === -->
-    <main:client clientId="cli_alice_wonder">
+    <!-- === Clients === -->
+
+    <main:client clientId="cli_001">
         <cg:firstName>Alice</cg:firstName>
         <cg:lastName>Wonder</cg:lastName>
-        <cg:email>alice@example.com</cg:email>
-        <cg:phone>+1-555-0100</cg:phone>
-        <cg:countryOfResidence>USA</cg:countryOfResidence>
+        <cg:email>alice@gmail.com</cg:email>
+        <cg:phone>+33-745-172-23</cg:phone>
+        <cg:countryOfResidence>France</cg:countryOfResidence>
         <cg:experienceLevel>OCCASIONAL</cg:experienceLevel>
     </main:client>
     
+    <main:client clientId="cli_002">
+        <cg:firstName>Leon</cg:firstName>
+        <cg:lastName>Schneider</cg:lastName>
+        <cg:email>leon.schneider@outlook.de</cg:email>
+        <cg:phone>+49-151-334455</cg:phone>
+        <cg:countryOfResidence>Germany</cg:countryOfResidence>
+        <cg:experienceLevel>REGULAR</cg:experienceLevel>
+    </main:client>
+    
+    <main:client clientId="cli_003">
+        <cg:firstName>Maria</cg:firstName>
+        <cg:lastName>García</cg:lastName>
+        <cg:email>maria.garcia@example.es</cg:email>
+        <cg:phone>+34-600-991122</cg:phone>
+        <cg:countryOfResidence>Spain</cg:countryOfResidence>
+        <cg:experienceLevel>BEGINNER</cg:experienceLevel>
+    </main:client>
+
+    <main:client clientId="cli_004">
+        <cg:firstName>Lars</cg:firstName>
+        <cg:lastName>Van Dijk</cg:lastName>
+        <cg:email>lars.vandijk@mail.nl</cg:email>
+        <cg:phone>+31-612-334455</cg:phone>
+        <cg:countryOfResidence>Netherlands</cg:countryOfResidence>
+        <cg:experienceLevel>EXPERT</cg:experienceLevel>
+    </main:client>
+
+    <main:client clientId="cli_005">
+        <cg:firstName>Giulia</cg:firstName>
+        <cg:lastName>Rossi</cg:lastName>
+        <cg:email>giulia.rossi@example.it</cg:email>
+        <cg:phone>+39-333-784512</cg:phone>
+        <cg:countryOfResidence>Italy</cg:countryOfResidence>
+        <cg:experienceLevel>OCCASIONAL</cg:experienceLevel>
+    </main:client>
+
+    <main:client clientId="cli_006">
+        <cg:firstName>Erik</cg:firstName>
+        <cg:lastName>Johansson</cg:lastName>
+        <cg:email>erik.johansson@proton.se</cg:email>
+        <cg:phone>+46-70-556677</cg:phone>
+        <cg:countryOfResidence>Sweden</cg:countryOfResidence>
+        <cg:experienceLevel>REGULAR</cg:experienceLevel>
+    </main:client>
+
+    <main:client clientId="cli_007">
+        <cg:firstName>Chloe</cg:firstName>
+        <cg:lastName>Williams</cg:lastName>
+        <cg:email>chloe.williams@example.co.uk</cg:email>
+        <cg:phone>+44-7710-888999</cg:phone>
+        <cg:countryOfResidence>United Kingdom</cg:countryOfResidence>
+        <cg:experienceLevel>BEGINNER</cg:experienceLevel>
+    </main:client>
+    
+
+    <main:client clientId="cli_008">
+        <cg:firstName>Luca</cg:firstName>
+        <cg:lastName>Keller</cg:lastName>
+        <cg:email>luca.keller@mail.ch</cg:email>
+        <cg:phone>+41-78-445566</cg:phone>
+        <cg:countryOfResidence>Switzerland</cg:countryOfResidence>
+        <cg:experienceLevel>EXPERT</cg:experienceLevel>
+    </main:client>
+    
+    <main:client clientId="cli_009">
+        <cg:firstName>Emma</cg:firstName>
+        <cg:lastName>De Smet</cg:lastName>
+        <cg:email>emma.desmet@gmail.be</cg:email>
+        <cg:phone>+32-485-778899</cg:phone>
+        <cg:countryOfResidence>Belgium</cg:countryOfResidence>
+        <cg:experienceLevel>REGULAR</cg:experienceLevel>
+    </main:client>
+
+    <main:client clientId="cli_010">
+        <cg:firstName>James</cg:firstName>
+        <cg:lastName>Miller</cg:lastName>
+        <cg:email>james.miller@example.com</cg:email>
+        <cg:phone>+1-202-555-0147</cg:phone>
+        <cg:countryOfResidence>United States</cg:countryOfResidence>
+        <cg:experienceLevel>OCCASIONAL</cg:experienceLevel>
+    </main:client>
+    
+    <main:client clientId="cli_011">
+        <cg:firstName>Hana</cg:firstName>
+        <cg:lastName>Sato</cg:lastName>
+        <cg:email>hana.sato@mail.jp</cg:email>
+        <cg:phone>+81-90-1234-5678</cg:phone>
+        <cg:countryOfResidence>Japan</cg:countryOfResidence>
+        <cg:experienceLevel>BEGINNER</cg:experienceLevel>
+    </main:client>
+    
+    <main:client clientId="cli_012">
+        <cg:firstName>Nicolas</cg:firstName>
+        <cg:lastName>Hue</cg:lastName>
+        <cg:email>nicolas.hue@gmail.com</cg:email>
+        <cg:phone>+33-755-172-26</cg:phone>
+        <cg:countryOfResidence>France</cg:countryOfResidence>
+        <cg:experienceLevel>OCCASIONAL</cg:experienceLevel>
+    </main:client>
+    
+    
+
+    <!-- === Guides === -->
     <main:guide guideId="guide_jean_pierre">
         <cg:name>Jean-Pierre</cg:name>
         <cg:certification>National Guide Level 2</cg:certification>
-        <cg:phone>+33-6-0000-0000</cg:phone>
+        <cg:phone>+33-1-0000-0001</cg:phone>
         <cg:email>jp@cyclodyssees.fr</cg:email>
     </main:guide>
     
+    <main:guide guideId="guide_christine_dupont">
+        <cg:name>Christine Dupont</cg:name>
+        <cg:certification>National Guide Level 1</cg:certification>
+        <cg:phone>+33-1-0000-0002</cg:phone>
+        <cg:email>cd@cyclodyssees.fr</cg:email>
+    </main:guide>
+    
+    <main:guide guideId="guide_martin_leblanc">
+        <cg:name>Martin Leblanc</cg:name>
+        <cg:certification>National Guide Level 3</cg:certification>
+        <cg:phone>+33-1-0000-0003</cg:phone>
+        <cg:email>ml@cyclodyssees.fr</cg:email>
+    </main:guide>
+    
+    <!-- === tripGroup === -->
+
     <main:tripGroup tripGroupId="grp_june_2024"
                     tourId="tour_paris_royal"
                     leadGuideId="guide_jean_pierre">
-        <cg:MaxParticipants>12</cg:MaxParticipants>
-        <cg:currentParticipants>cli_alice_wonder</cg:currentParticipants>
+        <cg:MaxParticipants>1</cg:MaxParticipants>
+        <cg:currentParticipants>cli_001</cg:currentParticipants>
     </main:tripGroup>
     
+    <main:tripGroup tripGroupId="grp_december_2024"
+                    tourId="tour_tuscany_wine_hills"
+                    leadGuideId="guide_jean_pierre">
+        <cg:MaxParticipants>2</cg:MaxParticipants>
+        <cg:currentParticipants>cli_003 cli_004</cg:currentParticipants>
+    </main:tripGroup>
+    
+    <main:tripGroup tripGroupId="grp_mai_2024"
+                    tourId="tour_kyoto_heritage"
+                    leadGuideId="guide_christine_dupont">
+        <cg:MaxParticipants>3</cg:MaxParticipants>
+        <cg:currentParticipants>cli_007 cli_006 cli_008</cg:currentParticipants>
+    </main:tripGroup>
+    
+    <!-- === Tour Packages  === -->
     <main:tourPackage tourId="tour_paris_royal">
         <tp:title>Royal Paris Weekend</tp:title>
         <tp:description>Discover the kings' valley by bike.</tp:description>
@@ -43,6 +178,37 @@
         <tp:stageIds>stage_day_01</tp:stageIds>
     </main:tourPackage>
     
+    <main:tourPackage tourId="tour_tuscany_wine_hills">
+        <tp:title>Tuscany Wine Hills Tour</tp:title>
+        <tp:description>A scenic 3-day cycling adventure across the rolling hills of Tuscany.</tp:description>
+        <tp:totalDurationDays>3</tp:totalDurationDays>
+        <tp:difficulty>MODERATE</tp:difficulty>
+        <tp:currency>EUR</tp:currency>
+        <tp:luggageTransport>true</tp:luggageTransport>
+        <tp:stageIds>stage_tuscany_day_01 stage_tuscany_day_02 stage_tuscany_day_03</tp:stageIds>
+    </main:tourPackage>
+    
+    <main:tourPackage tourId="tour_kyoto_heritage">
+        <tp:title>Kyoto Heritage Cycling Tour</tp:title>
+        <tp:description>A cultural 2-day exploration of Kyotos shrines and bamboo forests.</tp:description>
+        <tp:totalDurationDays>2</tp:totalDurationDays>
+        <tp:difficulty>MODERATE</tp:difficulty>
+        <tp:currency>JPY</tp:currency>
+        <tp:luggageTransport>false</tp:luggageTransport>
+        <tp:stageIds>stage_kyoto_day_01 stage_kyoto_day_02</tp:stageIds>
+    </main:tourPackage>
+    
+    <main:tourPackage tourId="tour_california_coast">
+        <tp:title>California Pacific Coast Ride</tp:title>
+        <tp:description>A breathtaking 2-day ride along the Pacific Coast Highway.</tp:description>
+        <tp:totalDurationDays>2</tp:totalDurationDays>
+        <tp:difficulty>CHALLENGING</tp:difficulty>
+        <tp:currency>USD</tp:currency>
+        <tp:luggageTransport>true</tp:luggageTransport>
+        <tp:stageIds>stage_cal_day_01 stage_cal_day_02</tp:stageIds>
+    </main:tourPackage>
+    
+    <!-- === Stages === -->
     <main:stage stageId="stage_day_01" tourId="tour_paris_royal">
         <tp:dayNumber>1</tp:dayNumber>
         <tp:title>Escape from the Capital</tp:title>
@@ -54,12 +220,142 @@
         <tp:endDestinationId>dest_versailles</tp:endDestinationId>
     </main:stage>
     
+    <!-- === Stages === -->
+    <main:stage stageId="stage_tuscany_day_01" tourId="tour_tuscany_wine_hills">
+        <tp:dayNumber>1</tp:dayNumber>
+        <tp:title>Florence to Greve in Chianti</tp:title>
+        <tp:description>Ride through vineyards and medieval villages.</tp:description>
+        <tp:distanceKm>32.50</tp:distanceKm>
+        <tp:activityIds>act_chianti_tasting</tp:activityIds>
+        <tp:cyclingPathIds>path_chianti_route</tp:cyclingPathIds>
+        <tp:startDestinationId>dest_florence</tp:startDestinationId>
+        <tp:endDestinationId>dest_greve</tp:endDestinationId>
+    </main:stage>
+    
+    <main:stage stageId="stage_tuscany_day_02" tourId="tour_tuscany_wine_hills">
+        <tp:dayNumber>2</tp:dayNumber>
+        <tp:title>Greve to Siena</tp:title>
+        <tp:description>Hills, olive groves, and panoramic Tuscan views.</tp:description>
+        <tp:distanceKm>46.00</tp:distanceKm>
+        <tp:activityIds>act_siena_cathedral</tp:activityIds>
+        <tp:cyclingPathIds>path_siena_route</tp:cyclingPathIds>
+        <tp:startDestinationId>dest_greve</tp:startDestinationId>
+        <tp:endDestinationId>dest_siena</tp:endDestinationId>
+    </main:stage>
+    
+    <main:stage stageId="stage_tuscany_day_03" tourId="tour_tuscany_wine_hills">
+        <tp:dayNumber>3</tp:dayNumber>
+        <tp:title>Siena to Montalcino</tp:title>
+        <tp:description>Finish with the world-famous Brunello vineyards.</tp:description>
+        <tp:distanceKm>40.00</tp:distanceKm>
+        <tp:activityIds>act_brunello_visit</tp:activityIds>
+        <tp:cyclingPathIds>path_montalcino_route</tp:cyclingPathIds>
+        <tp:startDestinationId>dest_siena</tp:startDestinationId>
+        <tp:endDestinationId>dest_montalcino</tp:endDestinationId>
+    </main:stage>
+    
+    <main:stage stageId="stage_kyoto_day_01" tourId="tour_kyoto_heritage">
+        <tp:dayNumber>1</tp:dayNumber>
+        <tp:title>Arashiyama Bamboo Forest</tp:title>
+        <tp:description>Ride through the bamboo grove and along the Katsura river.</tp:description>
+        <tp:distanceKm>18.00</tp:distanceKm>
+        <tp:activityIds>act_bamboo_photos</tp:activityIds>
+        <tp:cyclingPathIds>path_arashiyama</tp:cyclingPathIds>
+        <tp:startDestinationId>dest_kyoto_center</tp:startDestinationId>
+        <tp:endDestinationId>dest_arashiyama</tp:endDestinationId>
+    </main:stage>
+    
+    <main:stage stageId="stage_kyoto_day_02" tourId="tour_kyoto_heritage">
+        <tp:dayNumber>2</tp:dayNumber>
+        <tp:title>Fushimi Inari Shrine</tp:title>
+        <tp:description>Discover thousands of vermilion gates on this sacred route.</tp:description>
+        <tp:distanceKm>22.00</tp:distanceKm>
+        <tp:activityIds>act_shrine_walk</tp:activityIds>
+        <tp:cyclingPathIds>path_fushimi</tp:cyclingPathIds>
+        <tp:startDestinationId>dest_arashiyama</tp:startDestinationId>
+        <tp:endDestinationId>dest_fushimi</tp:endDestinationId>
+    </main:stage>
+    
+    <main:stage stageId="stage_cal_day_01" tourId="tour_california_coast">
+        <tp:dayNumber>1</tp:dayNumber>
+        <tp:title>San Francisco to Half Moon Bay</tp:title>
+        <tp:description>Cliffside views and ocean breeze.</tp:description>
+        <tp:distanceKm>36.00</tp:distanceKm>
+        <tp:activityIds>act_beach_stop</tp:activityIds>
+        <tp:cyclingPathIds>path_sf_hmb</tp:cyclingPathIds>
+        <tp:startDestinationId>dest_san_francisco</tp:startDestinationId>
+        <tp:endDestinationId>dest_half_moon_bay</tp:endDestinationId>
+    </main:stage>
+    
+    <main:stage stageId="stage_cal_day_02" tourId="tour_california_coast">
+        <tp:dayNumber>2</tp:dayNumber>
+        <tp:title>Half Moon Bay to Santa Cruz</tp:title>
+        <tp:description>Ride through redwoods and coastal cliffs.</tp:description>
+        <tp:distanceKm>50.00</tp:distanceKm>
+        <tp:activityIds>act_redwoods_walk</tp:activityIds>
+        <tp:cyclingPathIds>path_hmb_sc</tp:cyclingPathIds>
+        <tp:startDestinationId>dest_half_moon_bay</tp:startDestinationId>
+        <tp:endDestinationId>dest_santa_cruz</tp:endDestinationId>
+    </main:stage>
+    <!-- === Activities === -->
+    
     <main:activity activityId="act_wine_tasting">
         <tp:name>Grand Cru Tasting</tp:name>
         <tp:type>Gastronomy</tp:type>
         <tp:durationHours>2.00</tp:durationHours>
         <tp:cost>50.00</tp:cost>
     </main:activity>
+    
+    <main:activity activityId="act_chianti_tasting">
+        <tp:name>Chianti Wine Tasting</tp:name>
+        <tp:type>Gastronomy</tp:type>
+        <tp:durationHours>1.50</tp:durationHours>
+        <tp:cost>35.00</tp:cost>
+    </main:activity>
+    
+    <main:activity activityId="act_siena_cathedral">
+        <tp:name>Siena Cathedral Guided Visit</tp:name>
+        <tp:type>Cultural</tp:type>
+        <tp:durationHours>2.00</tp:durationHours>
+        <tp:cost>20.00</tp:cost>
+    </main:activity>
+    
+    <main:activity activityId="act_brunello_visit">
+        <tp:name>Brunello di Montalcino Winery Experience</tp:name>
+        <tp:type>Gastronomy</tp:type>
+        <tp:durationHours>2.50</tp:durationHours>
+        <tp:cost>45.00</tp:cost>
+    </main:activity>
+    
+    <main:activity activityId="act_bamboo_photos">
+        <tp:name>Bamboo Grove Photo Session</tp:name>
+        <tp:type>Nature</tp:type>
+        <tp:durationHours>1.00</tp:durationHours>
+        <tp:cost>0.00</tp:cost>
+    </main:activity>
+    
+    <main:activity activityId="act_shrine_walk">
+        <tp:name>Fushimi Inari Shrine Walk</tp:name>
+        <tp:type>Cultural</tp:type>
+        <tp:durationHours>2.00</tp:durationHours>
+        <tp:cost>0.00</tp:cost>
+    </main:activity>
+    
+    <main:activity activityId="act_beach_stop">
+        <tp:name>Beach Relaxation Break</tp:name>
+        <tp:type>Nature</tp:type>
+        <tp:durationHours>1.00</tp:durationHours>
+        <tp:cost>0.00</tp:cost>
+    </main:activity>
+    
+    <main:activity activityId="act_redwoods_walk">
+        <tp:name>Redwoods Forest Walk</tp:name>
+        <tp:type>Nature</tp:type>
+        <tp:durationHours>1.50</tp:durationHours>
+        <tp:cost>0.00</tp:cost>
+    </main:activity>
+    
+    <!-- === Cycling Paths === -->
     
     <main:cyclingPath pathId="path_royal_route"
                       fromDestinationId="dest_paris"
@@ -70,6 +366,78 @@
         <tp:elevationGainM>150.0</tp:elevationGainM>
         <tp:surfaceType>Paved</tp:surfaceType>
     </main:cyclingPath>
+    
+    <main:cyclingPath pathId="path_chianti_route"
+                      fromDestinationId="dest_florence"
+                      toDestinationId="dest_greve">
+        <tp:name>Chianti Vineyards Route</tp:name>
+        <tp:difficulty>MODERATE</tp:difficulty>
+        <tp:distanceKm>32.50</tp:distanceKm>
+        <tp:elevationGainM>380.0</tp:elevationGainM>
+        <tp:surfaceType>Paved</tp:surfaceType>
+    </main:cyclingPath>
+    
+    <main:cyclingPath pathId="path_siena_route"
+                      fromDestinationId="dest_greve"
+                      toDestinationId="dest_siena">
+        <tp:name>Tuscan Olive Road</tp:name>
+        <tp:difficulty>CHALLENGING</tp:difficulty>
+        <tp:distanceKm>46.00</tp:distanceKm>
+        <tp:elevationGainM>550.0</tp:elevationGainM>
+        <tp:surfaceType>Paved</tp:surfaceType>
+    </main:cyclingPath>
+    
+    <main:cyclingPath pathId="path_montalcino_route"
+                      fromDestinationId="dest_siena"
+                      toDestinationId="dest_montalcino">
+        <tp:name>Brunello Panorama Trail</tp:name>
+        <tp:difficulty>MODERATE</tp:difficulty>
+        <tp:distanceKm>40.00</tp:distanceKm>
+        <tp:elevationGainM>420.0</tp:elevationGainM>
+        <tp:surfaceType>Mixed</tp:surfaceType>
+    </main:cyclingPath>
+    
+    <main:cyclingPath pathId="path_arashiyama"
+                      fromDestinationId="dest_kyoto_center"
+                      toDestinationId="dest_arashiyama">
+        <tp:name>Arashiyama Scenic Path</tp:name>
+        <tp:difficulty>EASY</tp:difficulty>
+        <tp:distanceKm>18.00</tp:distanceKm>
+        <tp:elevationGainM>80.0</tp:elevationGainM>
+        <tp:surfaceType>Paved</tp:surfaceType>
+    </main:cyclingPath>
+    
+    <main:cyclingPath pathId="path_fushimi"
+                      fromDestinationId="dest_arashiyama"
+                      toDestinationId="dest_fushimi">
+        <tp:name>Fushimi Heritage Road</tp:name>
+        <tp:difficulty>MODERATE</tp:difficulty>
+        <tp:distanceKm>22.00</tp:distanceKm>
+        <tp:elevationGainM>120.0</tp:elevationGainM>
+        <tp:surfaceType>Mixed</tp:surfaceType>
+    </main:cyclingPath>
+    
+    <main:cyclingPath pathId="path_sf_hmb"
+                      fromDestinationId="dest_san_francisco"
+                      toDestinationId="dest_half_moon_bay">
+        <tp:name>Pacific Ocean Edge Trail</tp:name>
+        <tp:difficulty>CHALLENGING</tp:difficulty>
+        <tp:distanceKm>36.00</tp:distanceKm>
+        <tp:elevationGainM>500.0</tp:elevationGainM>
+        <tp:surfaceType>Paved</tp:surfaceType>
+    </main:cyclingPath>
+    
+    <main:cyclingPath pathId="path_hmb_sc"
+                      fromDestinationId="dest_half_moon_bay"
+                      toDestinationId="dest_santa_cruz">
+        <tp:name>Redwoods Coast Path</tp:name>
+        <tp:difficulty>CHALLENGING</tp:difficulty>
+        <tp:distanceKm>50.00</tp:distanceKm>
+        <tp:elevationGainM>700.0</tp:elevationGainM>
+        <tp:surfaceType>Mixed</tp:surfaceType>
+    </main:cyclingPath>
+    
+    <!-- === Destinations === -->
     
     <main:destination destinationId="dest_paris">
         <tp:name>Paris</tp:name>
@@ -88,6 +456,97 @@
         <tp:longitude>2.120400</tp:longitude>
     </main:destination>
     
+    <main:destination destinationId="dest_florence">
+        <tp:name>Florence</tp:name>
+        <tp:country>Italy</tp:country>
+        <tp:region>Tuscany</tp:region>
+        <tp:type>HISTORICAL</tp:type>
+        <tp:latitude>43.7696</tp:latitude>
+        <tp:longitude>11.2558</tp:longitude>
+    </main:destination>
+    
+    <main:destination destinationId="dest_greve">
+        <tp:name>Greve in Chianti</tp:name>
+        <tp:country>Italy</tp:country>
+        <tp:region>Tuscany</tp:region>
+        <tp:type>COASTAL</tp:type>
+        <tp:latitude>43.5859</tp:latitude>
+        <tp:longitude>11.3158</tp:longitude>
+    </main:destination>
+    
+    <main:destination destinationId="dest_siena">
+        <tp:name>Siena</tp:name>
+        <tp:country>Italy</tp:country>
+        <tp:region>Tuscany</tp:region>
+        <tp:type>HISTORICAL</tp:type>
+        <tp:latitude>43.3188</tp:latitude>
+        <tp:longitude>11.3308</tp:longitude>
+    </main:destination>
+    
+    <main:destination destinationId="dest_montalcino">
+        <tp:name>Montalcino</tp:name>
+        <tp:country>Italy</tp:country>
+        <tp:region>Tuscany</tp:region>
+        <tp:type>MOUNTAINOUS</tp:type>
+        <tp:latitude>43.0550</tp:latitude>
+        <tp:longitude>11.4896</tp:longitude>
+    </main:destination>
+    
+    <main:destination destinationId="dest_kyoto_center">
+        <tp:name>Kyoto City Center</tp:name>
+        <tp:country>Japan</tp:country>
+        <tp:region>Kansai</tp:region>
+        <tp:type>CITY</tp:type>
+        <tp:latitude>35.0116</tp:latitude>
+        <tp:longitude>135.7681</tp:longitude>
+    </main:destination>
+    
+    <main:destination destinationId="dest_arashiyama">
+        <tp:name>Arashiyama</tp:name>
+        <tp:country>Japan</tp:country>
+        <tp:region>Kansai</tp:region>
+        <tp:type>CITY</tp:type>
+        <tp:latitude>35.0094</tp:latitude>
+        <tp:longitude>135.6664</tp:longitude>
+    </main:destination>
+    
+    <main:destination destinationId="dest_fushimi">
+        <tp:name>Fushimi Inari</tp:name>
+        <tp:country>Japan</tp:country>
+        <tp:region>Kansai</tp:region>
+        <tp:type>HISTORICAL</tp:type>
+        <tp:latitude>34.9671</tp:latitude>
+        <tp:longitude>135.7727</tp:longitude>
+    </main:destination>
+    
+    <main:destination destinationId="dest_san_francisco">
+        <tp:name>San Francisco</tp:name>
+        <tp:country>USA</tp:country>
+        <tp:region>California</tp:region>
+        <tp:type>CITY</tp:type>
+        <tp:latitude>37.7749</tp:latitude>
+        <tp:longitude>-122.4194</tp:longitude>
+    </main:destination>
+    
+    <main:destination destinationId="dest_half_moon_bay">
+        <tp:name>Half Moon Bay</tp:name>
+        <tp:country>USA</tp:country>
+        <tp:region>California</tp:region>
+        <tp:type>COASTAL</tp:type>
+        <tp:latitude>37.4636</tp:latitude>
+        <tp:longitude>-122.4286</tp:longitude>
+    </main:destination>
+    
+    <main:destination destinationId="dest_santa_cruz">
+        <tp:name>Santa Cruz</tp:name>
+        <tp:country>USA</tp:country>
+        <tp:region>California</tp:region>
+        <tp:type>COASTAL</tp:type>
+        <tp:latitude>36.9741</tp:latitude>
+        <tp:longitude>-122.0308</tp:longitude>
+    </main:destination>
+
+    <!-- === bike === -->
     <main:bike bikeId="bike_trek_001">
         <b:model>Trek FX 3</b:model>
         <b:frameSize>M</b:frameSize>
@@ -96,24 +555,101 @@
         <b:rentalPricePerDay>25.00</b:rentalPricePerDay>
     </main:bike>
     
+    <main:bike bikeId="bike_trek_002">
+        <b:model>Trek FX 3</b:model>
+        <b:frameSize>L</b:frameSize>
+        <b:type>TREKKING</b:type>
+        <b:availability>true</b:availability>
+        <b:rentalPricePerDay>25.00</b:rentalPricePerDay>
+    </main:bike>
+    
+    <main:bike bikeId="bike_trek_003">
+        <b:model>Trek FX 3</b:model>
+        <b:frameSize>S</b:frameSize>
+        <b:type>TREKKING</b:type>
+        <b:availability>true</b:availability>
+        <b:rentalPricePerDay>25.00</b:rentalPricePerDay>
+    </main:bike>
+    
+    <main:bike bikeId="bike_cannondale_001">
+        <b:model>Cannondale Quick 4</b:model>
+        <b:frameSize>L</b:frameSize>
+        <b:type>TREKKING</b:type>
+        <b:availability>true</b:availability>
+        <b:rentalPricePerDay>27.50</b:rentalPricePerDay>
+    </main:bike>
+    
+    <main:bike bikeId="bike_cannondale_002">
+        <b:model>Cannondale Quick 4</b:model>
+        <b:frameSize>S</b:frameSize>
+        <b:type>TREKKING</b:type>
+        <b:availability>true</b:availability>
+        <b:rentalPricePerDay>27.50</b:rentalPricePerDay>
+    </main:bike>
+    
+    <main:bike bikeId="bike_cannondale_003">
+        <b:model>Cannondale Quick 4</b:model>
+        <b:frameSize>M</b:frameSize>
+        <b:type>TREKKING</b:type>
+        <b:availability>true</b:availability>
+        <b:rentalPricePerDay>27.50</b:rentalPricePerDay>
+    </main:bike>
+
+    <main:bike bikeId="bike_specialized_001">
+        <b:model>Specialized Sirrus X 2.0</b:model>
+        <b:frameSize>S</b:frameSize>
+        <b:type>TREKKING</b:type>
+        <b:availability>true</b:availability>
+        <b:rentalPricePerDay>22.00</b:rentalPricePerDay>
+    </main:bike>
+    
+    <main:bike bikeId="bike_specialized_002">
+        <b:model>Specialized Sirrus X 2.0</b:model>
+        <b:frameSize>L</b:frameSize>
+        <b:type>TREKKING</b:type>
+        <b:availability>false</b:availability>
+        <b:rentalPricePerDay>22.00</b:rentalPricePerDay>
+    </main:bike>
+    
+    <!-- biking list-->
+    
     <main:rentalBikeListing listingId="list_alice_rental">
         <b:bikeIds>bike_trek_001</b:bikeIds>
     </main:rentalBikeListing>
     
+    <main:rentalBikeListing listingId="list_maria_rental">
+        <b:bikeIds>bike_trek_002 bike_cannondale_003</b:bikeIds>
+    </main:rentalBikeListing>
+    
+    
+    
+    <!-- maintenance log -->
     <main:maintenanceLog logId="log_fix_tire_001" bikeId="bike_trek_001">
         <b:date>2023-11-15</b:date>
         <b:cost>15.00</b:cost>
         <b:description>Replaced rear tube and tire.</b:description>
     </main:maintenanceLog>
+        
     
+    <!-- === Bookings === -->
     <main:booking bookingId="bk_2024_001"
-                  clientId="cli_alice_wonder"
+                  clientId="cli_001"
                   tripGroupId="grp_june_2024"
                   rentalBikeListingId="list_alice_rental"
                   tourId="tour_paris_royal">
         <bk:bookingDate>2024-01-20</bk:bookingDate>
         <bk:status>CONFIRMED</bk:status>
         <bk:totalPrice>350.00</bk:totalPrice>
+    </main:booking>
+    
+    <main:booking bookingId="bk_2024_002"
+                  clientId="cli_003"
+                  tripGroupId="grp_december_2024"
+                  rentalBikeListingId="list_maria_rental"
+                  tourId="tour_tuscany_wine_hills">
+        <bk:bookingDate>2024-02-03</bk:bookingDate>
+        <bk:status>CONFIRMED</bk:status>
+        <bk:totalPrice>400.00</bk:totalPrice>
     </main:booking>
 
 </main:cyclingTourDatabase>

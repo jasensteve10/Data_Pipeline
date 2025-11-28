@@ -35,7 +35,7 @@ This model describes a complete information system for a **cycling tour operator
 
 ---
 
-## 🔹 **Tour Packages **
+## 🔹 **Tour Packages**
 
 * A **TourPackage** represents a **tour offer**, made up of multiple daily **Stages**.
 
@@ -99,7 +99,7 @@ This model represents a full cycling tour operator system where clients can book
 
 ---
 
-## Modules
+##  **Modules**
 the model is modularized as follows:
 
 * common.xsd - contains common simple types and enumerations used across the model 
@@ -114,3 +114,10 @@ the model is modularized as follows:
    (booking ).
 * main.xsd - imports all the modularized schemas and serves as the root schema for the entire model.
    (imports all other .xsd files ).
+
+## **Scenarios and xsl transformation**
+
+* Mes Scénarios :
+1- Cette feuille XSLT affiche pour chaque étape (Stage) la liste des activités proposées.
+   Pour chaque étape, elle affiche le titre puis les activités associées avec leur nom, type et durée.
+
