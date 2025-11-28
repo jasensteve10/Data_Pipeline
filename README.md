@@ -16,6 +16,12 @@ step 5 : 2 scenari  for xsl structure modification
 
 step 6 : 2 scenari for xsl to json format 
 
+step 7 : python program for json
+
+step 8 : python scenario with api ( we will not do it, lack of time )  with the json schema
+
+step 9: report and others 
+
 
 ---
 
