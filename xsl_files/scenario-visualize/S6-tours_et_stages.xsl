@@ -1,9 +1,8 @@
-<!--
-Cette feuille XSLT affiche chaque circuit (TourPackage) avec la liste de ses étapes (Stages).
-Pour chaque circuit, elle affiche le titre puis les étapes avec le jour, le titre et la distance.
--->
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:main="http://www.TourCyclingOperator.com/main"
+    xmlns:tp="http://www.TourCyclingOperator.com/tour_packages">
     <xsl:output method="html" encoding="UTF-8"/>
     <xsl:template match="/">
         <html>
@@ -12,13 +11,13 @@ Pour chaque circuit, elle affiche le titre puis les étapes avec le jour, le tit
             </head>
             <body>
                 <h2>Circuits et leurs étapes</h2>
-                <xsl:for-each select="//TourPackage">
-                    <h3><xsl:value-of select="title"/></h3>
+                <xsl:for-each select="//main:tourPackage">
+                    <h3><xsl:value-of select="tp:title"/></h3>
                     <ul>
-                        <xsl:for-each select="//Stage[tourId=current()/@tourId]">
+                        <xsl:for-each select="//main:stage[@tourId=current()/@tourId]">
                             <li>
-                                Jour <xsl:value-of select="dayNumber"/> : <xsl:value-of select="title"/>
-                                (<xsl:value-of select="distanceKm"/> km)
+                                Jour <xsl:value-of select="tp:dayNumber"/> : <xsl:value-of select="tp:title"/>
+                                (<xsl:value-of select="tp:distanceKm"/> km)
                             </li>
                         </xsl:for-each>
                     </ul>
