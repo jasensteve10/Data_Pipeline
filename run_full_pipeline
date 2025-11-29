@@ -1,0 +1,93 @@
+#!/usr/bin/env python3
+"""
+run_full_pipeline.py
+Execute:
+  1. ALL XSL transformations (Scenario 1 → 6 + extra)
+  2. Scenario 2 implemented in Python DOM (scenario2_dom.py)
+
+This script must be located at the ROOT of the repository.
+"""
+
+import os
+import subprocess
+import sys
+
+
+def main():
+
+    print("\n=== FULL PIPELINE EXECUTION ===\n")
+
+    # Root of repo = directory of this script
+    ROOT = os.path.dirname(os.path.abspath(__file__))
+
+    # Paths
+    XML_FILE = os.path.join(ROOT, "xml_database", "example_1.xml")
+    XSD_FILE = os.path.join(ROOT, "xsd_files", "main.xsd")
+    XSL_DIR = os.path.join(ROOT, "xsl_files", "scenario-visualize")
+    OUTPUT_DIR = os.path.join(ROOT, "output")
+
+    XML_PIPELINE_SCRIPT = os.path.join(ROOT, "python", "xml_pipeline")
+    DOM_SCRIPT = os.path.join(ROOT, "python", "scenario2_dom")
+
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    # ==========================================================
+    # PART 1: APPLY ALL XSL SCENARIOS
+    # ==========================================================
+    print("---- Running all XSL transformations ----\n")
+
+    for xsl_file in sorted(os.listdir(XSL_DIR)):
+        if not xsl_file.endswith(".xsl"):
+            continue
+
+        xsl_path = os.path.join(XSL_DIR, xsl_file)
+
+        print(f">>> Processing XSL: {xsl_file}")
+
+        cmd = [
+            sys.executable,  # run with same python interpreter
+            XML_PIPELINE_SCRIPT,
+            XML_FILE,
+            XSD_FILE,
+            xsl_path
+        ]
+
+        result = subprocess.run(cmd)
+
+        if result.returncode != 0:
+            print(f"❌ ERROR: Pipeline failed on {xsl_file}")
+            sys.exit(1)
+
+        print(f"✔ XSL OK: {xsl_file}\n")
+
+    # ==========================================================
+    # PART 2: SCENARIO 2 DOM TRANSFORMATION
+    # ==========================================================
+    print("\n---- Running Python DOM Scenario 2 ----\n")
+
+    if not os.path.exists(DOM_SCRIPT):
+        print("❌ ERROR: scenario2_dom.py not found in python/")
+        sys.exit(1)
+
+    cmd_dom = [
+        sys.executable,
+        DOM_SCRIPT
+    ]
+
+    result_dom = subprocess.run(cmd_dom)
+
+    if result_dom.returncode != 0:
+        print("❌ ERROR: DOM Scenario 2 failed.")
+        sys.exit(1)
+
+    print("✔ DOM Scenario 2 completed successfully.\n")
+
+    # ==========================================================
+    # END
+    # ==========================================================
+    print("=== PIPELINE COMPLETED SUCCESSFULLY ===")
+    print(f"All outputs available in: {OUTPUT_DIR}\n")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+
+
+"""
+scenario2_dom.py
+DOM-based implementation for Scenario 2 based on the real XML structure.
+"""
+
+import os
+from xml.dom import minidom
+
+# ---------------------------------------------------------
+# Automatic project root
+# ---------------------------------------------------------
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+XML_FILE = os.path.join(BASE_DIR, "xml_database", "example_1.xml")
+OUTPUT_FILE = os.path.join(BASE_DIR, "output", "scenario2_python_dom.html")
+
+
+def get_text(node_list):
+    """Get text of a DOM node safely."""
+    if node_list and node_list[0].firstChild:
+        return node_list[0].firstChild.nodeValue.strip()
+    return None
+
+
+def scenario2_dom(xml_path, output_path):
+
+    print(f"Loading XML: {xml_path}")
+    doc = minidom.parse(xml_path)
+
+    # ---------------------------------------------------------
+    # Collect all clients <main:client>
+    # ---------------------------------------------------------
+    clients = doc.getElementsByTagName("main:client")
+
+    # Experience groups
+    groups = {
+        "BEGINNER": [],
+        "OCCASIONAL": [],
+        "REGULAR": [],
+        "EXPERT": []
+    }
+
+    print(f"Found {len(clients)} clients")
+
+    # ---------------------------------------------------------
+    # Extract relevant data for each client
+    # ---------------------------------------------------------
+    for c in clients:
+
+        first = get_text(c.getElementsByTagName("cg:firstName"))
+        last = get_text(c.getElementsByTagName("cg:lastName"))
+        level = get_text(c.getElementsByTagName("cg:experienceLevel"))
+
+        if not first or not last or not level:
+            continue
+
+        fullname = f"{first} {last}"
+
+        if level not in groups:
+            groups[level] = []  # in case new level appears
+
+        groups[level].append(fullname)
+
+    # ---------------------------------------------------------
+    # Build output HTML
+    # ---------------------------------------------------------
+    html = [
+        "<html>",
+        "<head><meta charset='UTF-8'><title>Scenario 2 (DOM)</title></head>",
+        "<body>",
+        "<h1>Clients par niveau d'expérience (Version DOM)</h1>"
+    ]
+
+    for level, names in groups.items():
+        html.append(f"<h2>{level}</h2><ul>")
+        for n in names:
+            html.append(f"<li>{n}</li>")
+        html.append("</ul>")
+
+    html.append("</body></html>")
+
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(html))
+
+    print(f"✔ DOM scenario generated: {output_path}")
+
+
+# ---------------------------------------------------------
+# Run
+# ---------------------------------------------------------
+if __name__ == "__main__":
+    scenario2_dom(XML_FILE, OUTPUT_FILE)

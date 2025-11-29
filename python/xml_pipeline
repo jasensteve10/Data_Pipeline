@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+
+
+"""
+xml_pipeline.py
+Generic pipeline:
+- Parse XML
+- Validate against XSD
+- Apply XSL
+Output is automatically saved in /output/<xslname>.html
+"""
+
+import sys
+import os
+from lxml import etree
+
+
+def main():
+
+    if len(sys.argv) != 4:
+        print("Usage: python xml_pipeline.py <xml_file> <xsd_file> <xsl_file>")
+        sys.exit(1)
+
+    xml_path = sys.argv[1]
+    xsd_path = sys.argv[2]
+    xsl_path = sys.argv[3]
+
+    # Project root = parent folder of python/
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    OUTPUT_DIR = os.path.join(BASE_DIR, "output")
+
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    # =========================================================
+    # Load XML
+    # =========================================================
+    try:
+        xml_doc = etree.parse(xml_path)
+        print("✔ XML parsed.")
+    except Exception as e:
+        print("❌ Error parsing XML:", e)
+        sys.exit(1)
+
+    # =========================================================
+    # Load and validate XSD
+    # =========================================================
+    try:
+        xsd_doc = etree.parse(xsd_path)
+        schema = etree.XMLSchema(xsd_doc)
+
+        if schema.validate(xml_doc):
+            print("✔ XML is valid according to XSD.")
+        else:
+            print("❌ XML validation failed:")
+            print(schema.error_log)
+            sys.exit(1)
+
+    except Exception as e:
+        print("❌ Error loading XSD:", e)
+        sys.exit(1)
+
+    # =========================================================
+    # Apply XSL transformation
+    # =========================================================
+    try:
+        xsl_doc = etree.parse(xsl_path)
+        transform = etree.XSLT(xsl_doc)
+
+        result = transform(xml_doc)
+
+        # Output filename = name of XSL but .html
+        xsl_name = os.path.basename(xsl_path).replace(".xsl", ".html")
+        output_file = os.path.join(OUTPUT_DIR, xsl_name)
+
+        with open(output_file, "wb") as f:
+            f.write(etree.tostring(result, pretty_print=True, encoding="UTF-8"))
+
+        print(f"✔ Transformation OK.")
+        print(f"✔ Output saved: {output_file}")
+
+    except Exception as e:
+        print("❌ Error applying XSL:", e)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

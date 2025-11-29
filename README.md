@@ -1,158 +1,233 @@
-this is the xml/json data pipeline projet 
+📘 Cycling Tour Operator — XML / XSD / XSLT / JSON / Python Data Pipeline
 
-This is the data pipeline
+This project implements a complete XML-based data pipeline for a Cycling Tour Operator.
+It covers data modeling, schema design, XML dataset creation, visualization scenarios using XSLT, XML-to-JSON transformations, and Python processing (XSD validation, XSL application, and DOM-based extraction).
 
-log:
-step 1 :  data model of cycling tour operator
-          the entities and relations   done
+🚴 1. Data Model Overview
 
-step 2 :  the schema of this model -- modularizing with namespaces and defining the models   done
+The model represents the operations of a cycling tour operator, including:
 
-step 3 :  the xml of this database corresponding to the schema  done
+Clients (identity, contact info, experience level)
 
-step 4 : 6 scenari  for xsl visualisation done
+Guides (certification, contact information)
 
-step 5 : 2 scenari  for xsl structure modification 
+Trip Groups (assigned guide, tour, participants)
 
-step 6 : 2 scenari for xsl to json format 
+Tour Packages (titles, descriptions, difficulty, stages)
 
-step 7 : python program for json
+Stages (day number, activities, destinations, cycling paths)
 
-step 8 : python scenario with api ( we will not do it, lack of time )  with the json schema
+Destinations (country, region, category, GPS coordinates)
 
-step 9: report and others 
+Activities (type, cost, duration)
 
+Cycling Paths (distance, elevation gain, difficulty)
 
----
+Bike Fleet (model, frame size, type, rental price, availability)
 
-This model describes a complete information system for a **cycling tour operator**, covering the management of clients, guides, tour packages, trip groups, bikes, reservations, maintenance, and cycling paths.
+Maintenance Logs (date, cost, description)
 
----
+Bookings (status, price, linked client and trip group)
 
-## 🔹 **Clients and Guides and Trip Groups**
+Core Relationships
 
-* A **Client** has personal information (name, email, phone, country), as well as an **experience level** (beginner, occasional, regular, or expert).
-* A **Guide** is a certified professional who leads cycling groups and has contact details stored in the system.
-* A **TripGroup** represents a a group of clients  where one client books a specific tour package and is led by a guide.
+A Tour Package is composed of multiple Stages.
 
-  * It references the TourPackage it corresponds to.
-  * It is led by a **head guide**.
-  * It defines the maximum number of participants and tracks the clients currently booked into the group.
+A Stage links to multiple Activities, Cycling Paths, and two Destinations.
 
----
+A Trip Group is led by a Guide and linked to a Tour Package.
 
-## 🔹 **Tour Packages**
+A Client can make several Bookings.
 
-* A **TourPackage** represents a **tour offer**, made up of multiple daily **Stages**.
+Bikes have multiple Maintenance Logs and can appear in rental listings.
 
-  * It includes a title, description, total duration in days, difficulty level, currency, and whether luggage transportation is provided.
-  * Each tour package is always composed of **at least one stage**.
+Cycling Paths always connect two Destinations.
 
----
+🧩 2. Modular XML Schema (XSD)
 
-## 🔹 **Stages, Destinations, Activities, and Cycling Paths**
+The schema is split across multiple namespaces:
 
-Each **Stage** describes a specific day of a tour:
+✔ common.xsd
 
-* It is linked to a tour, assigned to a day number, and includes a title, description, and daily distance.
-* Every stage is associated with:
+Enumerations and simple types (ExperienceLevel, DifficultyLevel, BookingStatus, BikeType, GPS coordinates, Price, Email, etc.)
 
-  * a set of **Activities** (cultural visits, events, experiences)
-  * one or more **CyclingPaths** used that day
-  * exactly two **Destinations**: the starting point and the ending point.
+✔ clients_and_guides.xsd
 
-**Destinations** include their name, country, region, type (city, historical, mountain, etc.), and GPS coordinates.
+Defines: client, guide, tripGroup
 
-**CyclingPaths** specify the difficulty, distance, elevation gain, and surface type. Each path always connects one starting destination to one ending destination.
+✔ tour_packages.xsd
 
----
+Defines: tourPackage, stage, activity, cyclingPath, destination
 
-## 🔹 **Bike Fleet and Maintenance Management**
+✔ bike_fleet_and_maintenance.xsd
 
-* A **Bike** has a model, frame size, bike type (trekking or electric), availability, and rental price per day.
-* A **RentalBikeListing** groups one or several bikes available for rental.
-* Each bike has a **maintenance history**, stored in MaintenanceLog entries containing date, cost, and description.
+Defines: bike, rentalBikeListing, maintenanceLog
 
----
+✔ bookings.xsd
 
-## 🔹 **Bookings**
+Defines: booking
 
-A **Booking** links together:
+✔ main.xsd
 
-* a Client,
-* a TripGroup,
-* a RentalBikeListing,
-* the booking date,
-* the booking status (pending, confirmed, cancelled, completed),
-* and the total price.
+Imports all modules and defines the root element:
 
----
+<main:cyclingTourDatabase>
 
-## 🔹 **Key Relationships**
+📄 3. XML Database
 
-* A **TourPackage** is composed of multiple **Stages** (composition).
-* A **TripGroup** is led by one **Guide**.
-* A **Client** can make several **Bookings** and participate in multiple trip groups.
-* A **Stage** offers **Activities** and uses **CyclingPaths**.
-* A **Bike** has multiple maintenance logs.
-* A **CyclingPath** always connects a start and an end **Destination**.
+The file example_1.xml contains a populated version of the model:
 
----
+12 clients
 
-# 🎯 **One-Sentence Summary**
+3 guides
 
-This model represents a full cycling tour operator system where clients can book guided multi-stage cycling tours, travel across defined cycling paths and destinations, rent bikes, participate in scheduled trip groups, and where the operator manages tours, activities, bikes, maintenance, and reservations.
+3 trip groups
 
----
+5 tour packages
 
-##  **Modules**
-the model is modularized as follows:
+12 stages
 
-* common.xsd - contains common simple types and enumerations used across the model 
-   ( ExperienceLevel, DifficultyLevel, BikeType, BookingStatus , DestinationType, EmailType, PriceType, LatitudeType, LongitudeType).
-* clients_and_guides.xsd - defines the Client, Guide, and TripGroup entities along with their relationships of complex type.
-   (client , guide , tripGroup ).
-* tour_packages.xsd - defines the TourPackage, Stage, Activity, CyclingPath, and Destination entities along with their relationships of complex type.
-   (tourPackage , stage , activity , cyclingPath , destination ).
-* bike_fleet_and_maintenance.xsd - defines the Bike, RentalBikeListing, and MaintenanceLog entities along with their relationships of complex type.
-   (bike , rentalBikeListing , maintenanceLog ).
-* bookings.xsd - defines the Booking entity along with its relationships of complex type.
-   (booking ).
-* main.xsd - imports all the modularized schemas and serves as the root schema for the entire model.
-   (imports all other .xsd files ).
+destinations, activities, cycling paths
 
-## **Scenarios and xsl transformation**
+full bike fleet + maintenance logs
 
-   * Testeur de XSLT : https://xslttest.appspot.com/
+bookings
 
- 1) Cette feuille XSLT affiche pour chaque étape (Stage) la liste des activités proposées.
-Pour chaque étape, elle affiche le titre puis les activités associées avec leur nom, type et durée.
+The XML validates fully against main.xsd.
 
+🎨 4. XSLT Visualization Scenarios
 
- 2) Cette feuille XSLT affiche la liste des vélos disponibles à la location.
-Pour chaque vélo disponible, elle affiche le modèle, la taille, le type et le prix par jour.
+Located in xsl_files/scenario-visualize/.
 
+✔ Activities per Stage
 
- 3) Cette feuille XSLT affiche la liste des réservations groupées par statut (CONFIRMED, CANCELLED, etc.).
-Pour chaque statut, elle liste les réservations avec l'identifiant, le client et le montant total.
+Lists all activities grouped by stage.
 
+✔ Clients by Experience Level
 
-4) Cette feuille XSLT affiche les destinations groupées par type (ville, montagne, etc.).
-Pour chaque type, elle liste les destinations correspondantes avec leur nom et région.
+Groups clients by BEGINNER / OCCASIONAL / REGULAR / EXPERT.
 
+✔ Available Bikes
 
+Displays available rental bikes with model, frame size, type, price/day.
 
-5) Cette feuille XSLT affiche chaque circuit (TourPackage) avec la liste de ses étapes (Stages).
-Pour chaque circuit, elle affiche le titre puis les étapes avec le jour, le titre et la distance.
+✔ Destinations by Type
 
+Groups destinations by CITY / HISTORICAL / COASTAL / MOUNTAINOUS, etc.
 
+✔ Bookings by Status
 
-6) Cette feuille XSLT affiche la liste des clients groupés par niveau d'expérience (BEGINNER, OCCASIONAL, REGULAR, EXPERT).
-Pour chaque niveau, elle liste les clients correspondants avec leur nom et email.
+Lists confirmed, cancelled, completed bookings.
 
+✔ Tours and Their Stages
 
+Displays each tour package with its day-by-day stages.
 
+🔀 5. XSLT Structure Modification Scenarios
 
+Two XSL files perform structural reorganization of the XML data, including grouping, reordering, and restructuring.
 
+🔄 6. XML to JSON Transformations
 
+Two XSLT transformations produce JSON-like structures representing selected sections of the data.
+These JSON outputs are then processed in Python (summary stats, grouping, validation-style checks).
 
+🐍 7. Python Programs
+✔ xml_pipeline.py — Generic XML → XSD → XSL Pipeline
+
+This script:
+
+loads an XML file
+
+validates it against an XSD schema
+
+applies an XSL stylesheet
+
+generates an HTML output inside the output/ directory
+
+Usage
+./xml_pipeline.py <xml_file> <xsd_file> <xsl_file>
+
+
+Example:
+
+./xml_pipeline.py xml_database/example_1.xml xsd_files/main.xsd "xsl_files/scenario-visualize/S1 - activites_par_stage.xsl"
+
+✔ scenario2_dom.py — DOM-Based Scenario Implementation
+
+Implements Scenario 2 using Python’s XML DOM API (xml.dom.minidom):
+
+parses the XML
+
+extracts clients
+
+groups them by experience level
+
+writes the output to:
+
+output/scenario2_python_dom.html
+
+
+This file satisfies the requirement for a second implementation using DOM or SAX.
+
+✔ run_full_pipeline.py — Complete Pipeline Runner
+
+Located at the root of the repository.
+
+This script:
+
+Validates the XML and applies all XSL stylesheets automatically
+
+Executes the Python DOM scenario
+
+Generates all HTML files in the output/ folder
+
+Run the full pipeline
+./run_full_pipeline.py
+
+Output examples
+output/
+ ├── S1 - activites_par_stage.html
+ ├── S2-clients_par_niveau_experience.html
+ ├── S3-bikes_disponibles.html
+ ├── S4-destinations_par_type.html
+ ├── S5-reservations_par_statut.html
+ ├── S6-tours_et_stages.html
+ ├── s1bis_.html
+ └── scenario2_python_dom.html
+
+📑 8. Documentation
+
+The accompanying report describes:
+
+data modeling approach
+
+schema modularization
+
+rationale behind XSD/XSLT design
+
+scenario explanations
+
+Python pipeline choices
+
+testing and validation
+
+🎯 Summary
+
+This project delivers a complete and functional data processing pipeline for a cycling tour operator, integrating:
+
+a rich XML dataset
+
+a fully modularized XSD schema
+
+multiple XSLT visualization scenarios
+
+XML → JSON conversions
+
+a generic Python XML/XSD/XSL pipeline
+
+a DOM-based Python scenario
+
+a full automatic execution pipeline
+
+Everything is designed to be modular, extensible, and strictly valid according to the schema.
