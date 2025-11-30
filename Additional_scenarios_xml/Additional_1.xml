@@ -1,35 +1,37 @@
-<?xml version="1.0"?>
-<bookingReport>
-	<bookingSummary bookingId="bk_2024_001" clientId="cli_001" tripGroupId="grp_june_2024" tourId="tour_paris_royal">
-		<bookingDate>2024-01-20</bookingDate>
-		<status>CONFIRMED</status>
-		<totalPrice>350.00</totalPrice>
-		<client>
-			<name>Alice Wonder</name>
-			<country>France</country>
-			<experienceLevel>OCCASIONAL</experienceLevel>
-		</client>
-		<tour>
-			<title>Royal Paris Weekend</title>
-			<difficulty>EASY</difficulty>
-			<currency>EUR</currency>
-			<totalDurationDays>2</totalDurationDays>
-		</tour>
-	</bookingSummary>
-	<bookingSummary bookingId="bk_2024_002" clientId="cli_003" tripGroupId="grp_december_2024" tourId="tour_tuscany_wine_hills">
-		<bookingDate>2024-02-03</bookingDate>
-		<status>CONFIRMED</status>
-		<totalPrice>400.00</totalPrice>
-		<client>
-			<name>Maria García</name>
-			<country>Spain</country>
-			<experienceLevel>BEGINNER</experienceLevel>
-		</client>
-		<tour>
-			<title>Tuscany Wine Hills Tour</title>
-			<difficulty>MODERATE</difficulty>
-			<currency>EUR</currency>
-			<totalDurationDays>3</totalDurationDays>
-		</tour>
-	</bookingSummary>
-</bookingReport>
+<GuideSchedules>
+  <Guide guideId="guide_jean_pierre">
+    <name>Jean-Pierre</name>
+    <TripGroup tripGroupId="grp_june_2024">
+      <tourId>tour_paris_royal</tourId>
+      <Bookings>
+        <Booking bookingId="bk_2024_001">
+          <clientId>cli_001</clientId>
+          <status>CONFIRMED</status>
+          <bookingDate>2024-01-20</bookingDate>
+          <totalPrice>350.00</totalPrice>
+        </Booking>
+      </Bookings>
+    </TripGroup>
+    <TripGroup tripGroupId="grp_december_2024">
+      <tourId>tour_tuscany_wine_hills</tourId>
+      <Bookings>
+        <Booking bookingId="bk_2024_002">
+          <clientId>cli_003</clientId>
+          <status>CONFIRMED</status>
+          <bookingDate>2024-02-03</bookingDate>
+          <totalPrice>400.00</totalPrice>
+        </Booking>
+      </Bookings>
+    </TripGroup>
+  </Guide>
+  <Guide guideId="guide_christine_dupont">
+    <name>Christine Dupont</name>
+    <TripGroup tripGroupId="grp_mai_2024">
+      <tourId>tour_kyoto_heritage</tourId>
+      <Bookings/>
+    </TripGroup>
+  </Guide>
+  <Guide guideId="guide_martin_leblanc">
+    <name>Martin Leblanc</name>
+  </Guide>
+</GuideSchedules>
