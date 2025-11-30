@@ -162,9 +162,10 @@ Two XSL files perform structural reorganizations of the XML data
 (grouping, reordering, restructuring).
 
 * **Additional scenario 1:**
-  — description to be added
+  — listing all bookings with resolved client info and tour info  hence creating a new xml structure
 * **Additional scenario 2:**
-  — description to be added
+  — Cette feuille XSLT génère un XML regroupant, pour chaque guide,
+     les trip groups qu’il encadre ainsi que les réservations associées.
 
 ---
 
@@ -173,8 +174,18 @@ Two XSL files perform structural reorganizations of the XML data
 Two XSLT stylesheets generate **JSON-like output structures**, representing selected sections of the dataset.
 These JSON outputs are later processed by Python for summarization, grouping, or validation-style checks.
 
-* **JSON Scenario 1:** (to be documented)
-* **JSON Scenario 2:** (to be documented)
+* **JSON Scenario 1:** J1 - Tours en format JSON (version avec namespaces).
+Cette feuille XSLT génère un JSON contenant chaque tour
+ainsi que la liste de ses étapes.
+
+Entrée : example_1.xml (main:cyclingTourDatabase)
+Sortie : JSON { "tours": [...] }
+
+* **JSON Scenario 2:** J2 - Résumé JSON de disponibilité des vélos.
+Cette feuille XSLT calcule le nombre total et le nombre de vélos disponibles
+pour chaque type (TREKKING, ELECTRIC).
+Entrée : tco_cycling.xml (CyclingTourDatabase)
+Sortie : JSON { "bikesSummary": { ... } }
 
 ---
 
