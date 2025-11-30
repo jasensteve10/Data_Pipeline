@@ -5,7 +5,6 @@
       "title": "Royal Paris Weekend",
       "totalDurationDays": 2,
       "difficulty": "EASY",
-      "currency": "EUR",
       "stages": [
         { "stageId": "stage_day_01", "dayNumber": 1, "title": "Escape from the Capital", "distanceKm": 25.00 }
       ]
@@ -15,7 +14,6 @@
       "title": "Tuscany Wine Hills Tour",
       "totalDurationDays": 3,
       "difficulty": "MODERATE",
-      "currency": "EUR",
       "stages": [
         { "stageId": "stage_tuscany_day_01", "dayNumber": 1, "title": "Florence to Greve in Chianti", "distanceKm": 32.50 },
         { "stageId": "stage_tuscany_day_02", "dayNumber": 2, "title": "Greve to Siena", "distanceKm": 46.00 },
@@ -27,7 +25,6 @@
       "title": "Kyoto Heritage Cycling Tour",
       "totalDurationDays": 2,
       "difficulty": "MODERATE",
-      "currency": "JPY",
       "stages": [
         { "stageId": "stage_kyoto_day_01", "dayNumber": 1, "title": "Arashiyama Bamboo Forest", "distanceKm": 18.00 },
         { "stageId": "stage_kyoto_day_02", "dayNumber": 2, "title": "Fushimi Inari Shrine", "distanceKm": 22.00 }
@@ -38,7 +35,6 @@
       "title": "California Pacific Coast Ride",
       "totalDurationDays": 2,
       "difficulty": "CHALLENGING",
-      "currency": "USD",
       "stages": [
         { "stageId": "stage_cal_day_01", "dayNumber": 1, "title": "San Francisco to Half Moon Bay", "distanceKm": 36.00 },
         { "stageId": "stage_cal_day_02", "dayNumber": 2, "title": "Half Moon Bay to Santa Cruz", "distanceKm": 50.00 }
