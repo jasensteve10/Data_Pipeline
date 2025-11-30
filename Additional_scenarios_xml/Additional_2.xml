@@ -1,38 +1,72 @@
-<?xml version="1.0"?>
-<GuideSchedules>
-	<Guide guideId="guide_jean_pierre">
-		<name>Jean-Pierre</name>
-		<TripGroup tripGroupId="grp_june_2024">
-			<tourId>tour_paris_royal</tourId>
-			<Bookings>
-				<Booking bookingId="bk_2024_001">
-					<clientId>cli_001</clientId>
-					<status>CONFIRMED</status>
-					<bookingDate>2024-01-20</bookingDate>
-					<totalPrice>350.00</totalPrice>
-				</Booking>
-			</Bookings>
-		</TripGroup>
-		<TripGroup tripGroupId="grp_december_2024">
-			<tourId>tour_tuscany_wine_hills</tourId>
-			<Bookings>
-				<Booking bookingId="bk_2024_002">
-					<clientId>cli_003</clientId>
-					<status>CONFIRMED</status>
-					<bookingDate>2024-02-03</bookingDate>
-					<totalPrice>400.00</totalPrice>
-				</Booking>
-			</Bookings>
-		</TripGroup>
-	</Guide>
-	<Guide guideId="guide_christine_dupont">
-		<name>Christine Dupont</name>
-		<TripGroup tripGroupId="grp_mai_2024">
-			<tourId>tour_kyoto_heritage</tourId>
-			<Bookings/>
-		</TripGroup>
-	</Guide>
-	<Guide guideId="guide_martin_leblanc">
-		<name>Martin Leblanc</name>
-	</Guide>
-</GuideSchedules>
+<BikeFleet>
+  <Bike bikeId="bike_trek_001">
+    <model>Trek FX 3</model>
+    <frameSize>M</frameSize>
+    <type>TREKKING</type>
+    <availability>true</availability>
+    <rentalPricePerDay>25.00</rentalPricePerDay>
+    <maintenanceHistory>
+      <MaintenanceLog logId="log_fix_tire_001">
+        <date>2023-11-15</date>
+        <cost>15.00</cost>
+        <description>Replaced rear tube and tire.</description>
+      </MaintenanceLog>
+    </maintenanceHistory>
+  </Bike>
+  <Bike bikeId="bike_trek_002">
+    <model>Trek FX 3</model>
+    <frameSize>L</frameSize>
+    <type>TREKKING</type>
+    <availability>true</availability>
+    <rentalPricePerDay>25.00</rentalPricePerDay>
+    <maintenanceHistory/>
+  </Bike>
+  <Bike bikeId="bike_trek_003">
+    <model>Trek FX 3</model>
+    <frameSize>S</frameSize>
+    <type>TREKKING</type>
+    <availability>true</availability>
+    <rentalPricePerDay>25.00</rentalPricePerDay>
+    <maintenanceHistory/>
+  </Bike>
+  <Bike bikeId="bike_cannondale_001">
+    <model>Cannondale Quick 4</model>
+    <frameSize>L</frameSize>
+    <type>TREKKING</type>
+    <availability>true</availability>
+    <rentalPricePerDay>27.50</rentalPricePerDay>
+    <maintenanceHistory/>
+  </Bike>
+  <Bike bikeId="bike_cannondale_002">
+    <model>Cannondale Quick 4</model>
+    <frameSize>S</frameSize>
+    <type>TREKKING</type>
+    <availability>true</availability>
+    <rentalPricePerDay>27.50</rentalPricePerDay>
+    <maintenanceHistory/>
+  </Bike>
+  <Bike bikeId="bike_cannondale_003">
+    <model>Cannondale Quick 4</model>
+    <frameSize>M</frameSize>
+    <type>TREKKING</type>
+    <availability>true</availability>
+    <rentalPricePerDay>27.50</rentalPricePerDay>
+    <maintenanceHistory/>
+  </Bike>
+  <Bike bikeId="bike_specialized_001">
+    <model>Specialized Sirrus X 2.0</model>
+    <frameSize>S</frameSize>
+    <type>TREKKING</type>
+    <availability>true</availability>
+    <rentalPricePerDay>22.00</rentalPricePerDay>
+    <maintenanceHistory/>
+  </Bike>
+  <Bike bikeId="bike_specialized_002">
+    <model>Specialized Sirrus X 2.0</model>
+    <frameSize>L</frameSize>
+    <type>TREKKING</type>
+    <availability>false</availability>
+    <rentalPricePerDay>22.00</rentalPricePerDay>
+    <maintenanceHistory/>
+  </Bike>
+</BikeFleet>
