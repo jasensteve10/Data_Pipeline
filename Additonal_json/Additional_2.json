@@ -1,6 +1,6 @@
 {
   "bikesSummary": {
-    "TREKKING": { "total": 0, "available": 0 },
+    "TREKKING": { "total": 8, "available": 7 },
     "ELECTRIC": { "total": 0, "available": 0 }
   }
 }
