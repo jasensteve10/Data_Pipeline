@@ -59,7 +59,7 @@
          ssimple types used across multiple modules
     -->
     
-    <!-- Email: simple RFC-like validation -->
+    <!-- Email: simple  using regex -->
     <xs:simpleType name="EmailType">
         <xs:restriction base="xs:string">
             <xs:pattern value="[^@\s]+@[^@\s]+\.[^@\s]+"/>

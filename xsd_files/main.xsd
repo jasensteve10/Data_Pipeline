@@ -42,16 +42,16 @@
             <xs:sequence>
                 
                 <!-- === Clients & Guides === -->
-                <xs:element name="client" type="cg:ClientType" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element name="guide" type="cg:GuideType" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element name="tripGroup" type="cg:TripGroupType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="client" type="cg:ClientType" minOccurs="0" maxOccurs="200"/>
+                <xs:element name="guide" type="cg:GuideType" minOccurs="0" maxOccurs="10"/>
+                <xs:element name="tripGroup" type="cg:TripGroupType" minOccurs="0" maxOccurs="100"/>
                 
                 <!-- === Tour Packages & Components === -->
-                <xs:element name="tourPackage" type="tp:TourPackageType" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element name="stage" type="tp:StageType" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element name="activity" type="tp:ActivityType" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element name="cyclingPath" type="tp:CyclingPathType" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element name="destination" type="tp:DestinationType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="tourPackage" type="tp:TourPackageType" minOccurs="1" maxOccurs="6"/>
+                <xs:element name="stage" type="tp:StageType" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element name="activity" type="tp:ActivityType" minOccurs="0" maxOccurs="10"/>
+                <xs:element name="cyclingPath" type="tp:CyclingPathType" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element name="destination" type="tp:DestinationType" minOccurs="1" maxOccurs="unbounded"/>
                 
                 <!-- === Bikes & Maintenance === -->
                 <xs:element name="bike" type="b:BikeType" minOccurs="0" maxOccurs="unbounded"/>
