@@ -1,63 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-     Cette feuille XSLT génère un XML regroupant, pour chaque guide,
-     les trip groups qu’il encadre ainsi que les réservations associées.
+X2 - Vélos et historique de maintenance (compatible namespaces).
+Cette feuille XSLT génère un XML regroupant chaque vélo
+avec ses logs de maintenance associés.
+Entrée : main:cyclingTourDatabase, main:bike, main:maintenanceLog
+Sortie : <BikeFleet>...</BikeFleet>
 -->
-<xsl:stylesheet
+<xsl:stylesheet 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:main="http://www.TourCyclingOperator.com/main"
-    xmlns:cg="http://www.TourCyclingOperator.com/clients_and_guides"
-    xmlns:bk="http://www.TourCyclingOperator.com/bookings"
-    version="1.0"
-    exclude-result-prefixes="main cg bk">
-    
-    <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
-    
-    <!-- Point d'entrée : l’élément racine de la BD -->
-    <xsl:template match="/main:cyclingTourDatabase">
-        <GuideSchedules>
-            <!-- Pour chaque guide de la base -->
-            <xsl:for-each select="main:guide">
-                <Guide guideId="{@guideId}">
-                    <name>
-                        <xsl:value-of select="cg:name"/>
-                    </name>
-                    
-                    <!-- TripGroups encadrés par ce guide -->
-                    <xsl:for-each
-                        select="/main:cyclingTourDatabase/main:tripGroup[@leadGuideId = current()/@guideId]">
-                        
-                        <TripGroup tripGroupId="{@tripGroupId}">
-                            <tourId>
-                                <xsl:value-of select="@tourId"/>
-                            </tourId>
-                            
-                            <Bookings>
-                                <!-- Bookings liés à ce tripGroup -->
-                                <xsl:for-each
-                                    select="/main:cyclingTourDatabase/main:booking[@tripGroupId = current()/@tripGroupId]">
-                                    
-                                    <Booking bookingId="{@bookingId}">
-                                        <clientId>
-                                            <xsl:value-of select="@clientId"/>
-                                        </clientId>
-                                        <status>
-                                            <xsl:value-of select="bk:status"/>
-                                        </status>
-                                        <bookingDate>
-                                            <xsl:value-of select="bk:bookingDate"/>
-                                        </bookingDate>
-                                        <totalPrice>
-                                            <xsl:value-of select="bk:totalPrice"/>
-                                        </totalPrice>
-                                    </Booking>
-                                </xsl:for-each>
-                            </Bookings>
-                        </TripGroup>
-                    </xsl:for-each>
-                </Guide>
+    xmlns:b="http://www.TourCyclingOperator.com/bike_fleet_and_maintenance"
+    version="1.0">
+
+    <xsl:output method="xml" indent="yes"/>
+
+    <xsl:template match="/">
+        <BikeFleet>
+            <xsl:for-each select="/main:cyclingTourDatabase/main:bike">
+                <Bike bikeId="{@bikeId}">
+                    <model><xsl:value-of select="b:model"/></model>
+                    <frameSize><xsl:value-of select="b:frameSize"/></frameSize>
+                    <type><xsl:value-of select="b:type"/></type>
+                    <availability><xsl:value-of select="b:availability"/></availability>
+                    <rentalPricePerDay><xsl:value-of select="b:rentalPricePerDay"/></rentalPricePerDay>
+
+                    <maintenanceHistory>
+                        <xsl:for-each select="/main:cyclingTourDatabase/main:maintenanceLog[@bikeId = current()/@bikeId]">
+                            <MaintenanceLog logId="{@logId}">
+                                <date><xsl:value-of select="b:date"/></date>
+                                <cost><xsl:value-of select="b:cost"/></cost>
+                                <description><xsl:value-of select="b:description"/></description>
+                            </MaintenanceLog>
+                        </xsl:for-each>
+                    </maintenanceHistory>
+                </Bike>
             </xsl:for-each>
-        </GuideSchedules>
+        </BikeFleet>
     </xsl:template>
-    
+
 </xsl:stylesheet>
