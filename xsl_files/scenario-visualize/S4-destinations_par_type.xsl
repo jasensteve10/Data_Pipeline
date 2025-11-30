@@ -4,6 +4,10 @@
     xmlns:main="http://www.TourCyclingOperator.com/main"
     xmlns:tp="http://www.TourCyclingOperator.com/tour_packages">
 
+<!-- Cette feuille XSLT affiche les destinations groupées par type (ville, montagne, etc.).
+Pour chaque type, elle liste les destinations correspondantes avec leur nom et région. --> 
+
+
     <xsl:output method="html" indent="yes"/>
 
     <!-- Root template -->

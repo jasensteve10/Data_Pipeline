@@ -6,6 +6,10 @@
     xmlns:b="http://www.TourCyclingOperator.com/bike_fleet_and_maintenance">
 
     <xsl:output method="html" encoding="UTF-8"/>
+	
+	<!-- Cette feuille XSLT affiche la liste des réservations groupées par statut (CONFIRMED, CANCELLED, etc.).
+Pour chaque statut, elle liste les réservations avec l'identifiant, le client et le montant total. -->
+
 
     <xsl:template match="/">
         <html>

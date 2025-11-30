@@ -6,6 +6,10 @@
     xmlns:cg="http://www.TourCyclingOperator.com/clients_and_guides">
 
     <xsl:output method="html" encoding="UTF-8"/>
+	
+	<!-- Cette feuille XSLT affiche la liste des vélos disponibles à la location.
+Pour chaque vélo disponible, elle affiche le modèle, la taille, le type et le prix par jour -->
+
 
     <!--
         Clé de groupement : on groupe les cg:client

@@ -4,6 +4,10 @@
     xmlns:main="http://www.TourCyclingOperator.com/main"
     xmlns:bk="http://www.TourCyclingOperator.com/bookings">
 
+<!--  Cette feuille XSLT affiche chaque circuit (TourPackage) avec la liste de ses étapes (Stages).
+Pour chaque circuit, elle affiche le titre puis les étapes avec le jour, le titre et la distance. -->
+
+
     <xsl:output method="html" indent="yes"/>
 
     <xsl:template match="/">

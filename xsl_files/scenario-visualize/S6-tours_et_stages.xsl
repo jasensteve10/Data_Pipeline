@@ -3,6 +3,11 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:main="http://www.TourCyclingOperator.com/main"
     xmlns:tp="http://www.TourCyclingOperator.com/tour_packages">
+	
+	<!-- Cette feuille XSLT affiche la liste des clients groupés par niveau d'expérience (BEGINNER, OCCASIONAL, REGULAR, EXPERT).
+Pour chaque niveau, elle liste les clients correspondants avec leur nom et email.-->
+	
+	
     <xsl:output method="html" encoding="UTF-8"/>
     <xsl:template match="/">
         <html>

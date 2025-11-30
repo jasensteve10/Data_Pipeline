@@ -5,6 +5,9 @@
     xmlns:main="http://www.TourCyclingOperator.com/main"
     xmlns:tp="http://www.TourCyclingOperator.com/tour_packages">
     
+    <!-- Cette feuille XSLT affiche pour chaque étape (Stage) la liste des activités proposées.
+Pour chaque étape, elle affiche le titre puis les activités associées avec leur nom, type et durée. -->
+    
     <xsl:output method="html" encoding="UTF-8" />
     
     <!-- Point d'entrée -->
