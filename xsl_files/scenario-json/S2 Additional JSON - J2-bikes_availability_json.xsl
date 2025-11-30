@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-J2 - Résumé JSON de disponibilité des vélos.
-Cette feuille XSLT calcule le nombre total et le nombre de vélos disponibles
-pour chaque type (TREKKING, ELECTRIC).
-Entrée : tco_cycling.xml (CyclingTourDatabase)
-Sortie : JSON { "bikesSummary": { ... } }
+J2 - Résumé JSON de disponibilité des vélos (version namespace).
+Compatible avec XML utilisant main: et b: namespaces.
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:main="http://www.TourCyclingOperator.com/main"
+    xmlns:b="http://www.TourCyclingOperator.com/bike_fleet_and_maintenance"
+    version="1.0">
+
     <xsl:output method="text" encoding="UTF-8"/>
 
     <xsl:template match="/">
@@ -14,17 +16,17 @@ Sortie : JSON { "bikesSummary": { ... } }
 
         <!-- TREKKING -->
         <xsl:text>    "TREKKING": { "total": </xsl:text>
-        <xsl:value-of select="count(CyclingTourDatabase/Bikes/Bike[type='TREKKING'])"/>
+        <xsl:value-of select="count(//main:bike[b:type='TREKKING'])"/>
         <xsl:text>, "available": </xsl:text>
-        <xsl:value-of select="count(CyclingTourDatabase/Bikes/Bike[type='TREKKING' and availability='true'])"/>
+        <xsl:value-of select="count(//main:bike[b:type='TREKKING' and b:availability='true'])"/>
         <xsl:text> },&#10;</xsl:text>
 
         <!-- ELECTRIC -->
         <xsl:text>    "ELECTRIC": { "total": </xsl:text>
-        <xsl:value-of select="count(CyclingTourDatabase/Bikes/Bike[type='ELECTRIC'])"/>
+        <xsl:value-of select="count(//main:bike[b:type='ELECTRIC'])"/>
         <xsl:text>, "available": </xsl:text>
-        <xsl:value-of select="count(CyclingTourDatabase/Bikes/Bike[type='ELECTRIC' and availability='true'])"/>
+        <xsl:value-of select="count(//main:bike[b:type='ELECTRIC' and b:availability='true'])"/>
         <xsl:text> }&#10;  }&#10;}</xsl:text>
-    </xsl:template>
 
+    </xsl:template>
 </xsl:stylesheet>
